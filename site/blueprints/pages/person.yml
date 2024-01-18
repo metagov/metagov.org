@@ -10,16 +10,12 @@ columns:
   main:
     width: 2/3
     fields:
-      name:
-        type: text
-        required: true
       affiliation:
         type: text
         label: Organization affiliation
       image:
         extends: sections/image
         label: Image
-        min: 1
         max: 1
         image:
           ratio: 1/1
@@ -28,10 +24,17 @@ columns:
         type: textarea
         label: Bio
         size: small
+      links:
+        type: structure
+        fields:
+          text:
+            label: Text
+            type: text
+          url:
+            label: URL
+            type: url
       email:
         type: email
-      website:
-        type: url
       interests:
         type: tags
         label: Research interests
@@ -56,21 +59,18 @@ columns:
         options:
           type: query
           query: site.find('projects').children
-      links:
-        type: structure
-        fields:
-          linkname:
-            label: Link name
-            type: text
-          url:
-            label: URL
-            type: url
-      mentorship:
-        type: checkboxes
-        label: Mentorship
-        options:
-          offering: Offering mentorship
-          seeking: Seeking mentorship
-      dateJoined:
+      offering_mentorship:
+        label: Offering Mentoryship
+        type: toggle
+        text:
+          - "no"
+          - "yes"
+      seeking_mentorship:
+        label: Seeking Mentorship
+        type: toggle
+        text:
+          - "no"
+          - "yes"
+      date_joined:
         type: date
         label: Date Joined

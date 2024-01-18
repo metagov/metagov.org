@@ -1,5 +1,5 @@
 <div class="container lg:flex lg:gap-8">
-  <div class="mb-8 flex-shrink-0">
+  <div class="mb-8 flex-shrink-0 max-w-[200px]">
     <?php if ($image = $page->image()) : ?>
       <img class="w-full border border-brand/30 rounded mb-4" src="<?= $image->crop(200, 200, "center")->url() ?>" srcset="<?= $image->srcset(
                                                                                                                               [
@@ -11,22 +11,36 @@
     <?php endif ?>
     <h1 class="text-small text-secondary mb-1"><?= $page->title()->esc() ?></h1>
     <p class="mb-1 italic font-serif"><?= $page->affiliation() ?></p>
-    <span class="button inline-block mb-1"><?= $page->role()->split()[0] ?></span>
-
+    <?php if ($page->role()->isNotEmpty()) : ?>
+      <?php foreach ($page->role()->split() as $role) : ?>
+        <span class="button inline-block mb-1"><?= $role ?></span>
+      <?php endforeach ?>
+    <?php endif ?>
     <div>
-      <a href="<?= $page->website() ?>" target="_blank">🌐 www</a>
-      <a href="mailto:<?= $page->email() ?>" target="_blank" class="ml-4">📧 email</a>
+      <?php
+      $links = $page->links()->toStructure();
+      foreach ($links as $link) : ?>
+        <a class="inline-block mr-2" href="<?= $link->content()->url() ?>" target="_blank">
+          <?= $link->content()->text() ?>
+        </a>
+      <?php endforeach ?>
     </div>
   </div>
 
-  <div>
-    <h3 class="text-xs font-mono text-secondary">BIO</h3>
-    <div class="prose mb-4">
-      <?= $page->bio()->kt() ?>
-    </div>
-    <h3 class="text-xs font-mono text-secondary">RESEARCH INTERESTS</h3>
-    <p><?= $page->interests() ?>
-    <h3 class="text-xs font-mono text-secondary">JOINED</h3>
-    <p><?= $page->dateJoined()->toDate('F Y') ?></p>
+  <div class="max-w-prose">
+    <?php if ($page->bio()->isNotEmpty()) : ?>
+      <h3 class="text-xs font-mono text-secondary">BIO</h3>
+      <div class="prose mb-4">
+        <?= $page->bio()->kt() ?>
+      </div>
+    <?php endif ?>
+    <?php if ($page->interests()->isNotEmpty()) : ?>
+      <h3 class="text-xs font-mono text-secondary">RESEARCH INTERESTS</h3>
+      <p><?= $page->interests() ?>
+      <?php endif ?>
+      <?php if ($page->dateJoined()->isNotEmpty()) : ?>
+      <h3 class="text-xs font-mono text-secondary">JOINED</h3>
+      <p><?= $page->dateJoined()->toDate('F Y') ?></p>
+    <?php endif ?>
   </div>
 </div>

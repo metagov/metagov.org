@@ -51,7 +51,7 @@ with open(filecsv.filename, 'r') as f: # Open the file
         line = ''
         try:
             title = row['title'] # title is the one heading that must be present
-            filename = filesafe(title) + '/' + blueprint # Create a Kirby safe folder and use blueprint name
+            filename = filesafe('20240118_'+title) + '/' + blueprint # Create a Kirby safe folder and use blueprint name
             print('Creating ' + filesafe(title) + '.txt')
         except:
             print("No 'title' item found so stopping. 'title' must be a heading and written in lowercase for the conversion to work.")

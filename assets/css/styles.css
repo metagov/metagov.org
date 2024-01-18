@@ -1005,6 +1005,14 @@ table td {
   max-height: 85vh;
 }
 
+.max-h-60 {
+  max-height: 15rem;
+}
+
+.max-h-72 {
+  max-height: 18rem;
+}
+
 .min-h-\[calc\(100vh-250px\)\] {
   min-height: calc(100vh - 250px);
 }
@@ -1056,6 +1064,26 @@ table td {
 
 .max-w-\[924px\] {
   max-width: 924px;
+}
+
+.max-w-md {
+  max-width: 28rem;
+}
+
+.max-w-sm {
+  max-width: 24rem;
+}
+
+.max-w-\[200px\] {
+  max-width: 200px;
+}
+
+.max-w-\[600px\] {
+  max-width: 600px;
+}
+
+.max-w-prose {
+  max-width: 65ch;
 }
 
 .flex-shrink-0 {
@@ -1167,6 +1195,10 @@ table td {
 
 .overflow-auto {
   overflow: auto;
+}
+
+.overflow-scroll {
+  overflow: scroll;
 }
 
 .rounded {

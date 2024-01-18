@@ -74,3 +74,8 @@ columns:
       date_joined:
         type: date
         label: Date Joined
+      public:
+        type: toggle
+        text:
+          - "no"
+          - "yes"

@@ -59,11 +59,17 @@
           <?php endif ?>
           <p class="text-small text-secondary mb-1"><?= $person->title() ?></p>
           <p class="mb-1 italic font-serif"><?= $person->affiliation() ?></p>
-          <span class="button inline-block mb-1"><?= $person->role()->split()[0] ?></span>
-
+          <?php if ($person->role()->isNotEmpty()) : ?>
+            <span class="button inline-block mb-1"><?= $person->role()->split()[0] ?></span>
+          <?php endif ?>
           <div>
-            <a href="<?= $person->website() ?>" target="_blank">🌐 www</a>
-            <a href="mailto:<?= $person->email() ?>" target="_blank" class="ml-4">📧 email</a>
+            <?php
+            $links = $person->links()->toStructure();
+            foreach ($links as $link) : ?>
+              <a class="inline-block mr-2" href="<?= $link->content()->url() ?>" target="_blank">
+                <?= $link->content()->text() ?>
+              </a>
+            <?php endforeach ?>
           </div>
           <?php snippet('modal', ['page' => $person, 'title' => $person->title(), 'subheading' => '', 'small' => 'true']) ?>
         </li>

@@ -60,6 +60,7 @@
     <h3 class="text-medium mb-4">Community directory</h3>
     <div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
       <span>FILTERS:</span>
+      <input class="hidden md:block search" placeholder="Search" />
       <?php snippet('blocks/filter', ['filters' => $roles, 'group' => 'role', 'label' => 'Role']) ?>
       <?php snippet('blocks/filter', ['filters' => $researchInterests, 'group' => 'researchInterests', 'label' => 'Research interests']) ?>
     </div>

@@ -13,7 +13,7 @@
                                                                                                                                         '3x'  => ['width' => 600, 'height' => 600, 'crop' => 'center'],
                                                                                                                                       ]
                                                                                                                                     ) ?>" alt="<?= $image->alt()->esc() ?>" width="<?= $image->resize(154)->width() ?>" height="<?= $image->resize(235)->height() ?>">
-    <h1 class="text-small text-secondary mb-1"><?= $page->title()->esc() ?></h1>
+    <h1 class="text-small text-secondary dark:text-secondary-dark mb-1"><?= $page->title()->esc() ?></h1>
     <p class="mb-1 italic font-serif"><?= $page->affiliation() ?></p>
     <?php if ($page->role()->isNotEmpty()) : ?>
       <?php foreach ($page->role()->split() as $role) : ?>

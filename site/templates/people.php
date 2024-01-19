@@ -35,7 +35,7 @@
           <?php foreach ($people as $person) : ?>
             <?php $index += 1 ?>
             <li>
-              <p class="text-secondary mb-0"><?= $person->title() ?></p>
+              <p class="text-secondary dark:text-secondary-dark mb-0"><?= $person->title() ?></p>
               <p class="font-serif"><?= $person->affiliation() ?></p>
             </li>
           <?php endforeach ?>
@@ -54,7 +54,7 @@
     <?php endforeach ?>
   </div>
 </div>
-<hr class="border-brand" />
+<hr class="border-secondary dark:border-secondary-dark" />
 <section id="people">
   <div class="mb-8 md:flex justify-between items-center">
     <h3 class="text-medium mb-4">Community directory</h3>
@@ -82,7 +82,7 @@
                                                                                                                                           ]
                                                                                                                                         ) ?>" alt="<?= $image->alt()->esc() ?>" width="<?= $image->resize(154)->width() ?>" height="<?= $image->resize(235)->height() ?>">
 
-        <p class="text-small text-secondary mb-1"><?= $person->title() ?></p>
+        <p class="text-small text-secondary dark:text-secondary-dark mb-1"><?= $person->title() ?></p>
         <p class="mb-1 italic font-serif line-clamp-1"><?= $person->affiliation() ?></p>
         <?php if ($person->role()->isNotEmpty()) : ?>
           <span class="button inline-block mb-1"><?= $person->role()->split()[0] ?></span>
@@ -103,6 +103,8 @@
   <div id="no-result" class="hidden">
     <p>No people found</p>
   </div>
+  <ul class="pagination"></ul>
+
 </section>
 </div>
 <?php snippet('footer') ?>
@@ -116,7 +118,9 @@
   var options = {
     valueNames: [{
       data: ['title', 'role', 'research-interests']
-    }]
+    }],
+    page: 40,
+    pagination: true
   }
 
   var peopleList = new List('people', options);

@@ -1,14 +1,18 @@
 <div class="container lg:flex lg:gap-8">
   <div class="mb-8 flex-shrink-0 max-w-[200px]">
-    <?php if ($image = $page->image()) : ?>
-      <img class="w-full border border-brand/30 rounded mb-4" src="<?= $image->crop(200, 200, "center")->url() ?>" srcset="<?= $image->srcset(
-                                                                                                                              [
-                                                                                                                                '1x'  => ['width' => 200, 'height' => 200, 'crop' => 'center'],
-                                                                                                                                '2x'  => ['width' => 400, 'height' => 400, 'crop' => 'center'],
-                                                                                                                                '3x'  => ['width' => 600, 'height' => 600, 'crop' => 'center'],
-                                                                                                                              ]
-                                                                                                                            ) ?>" alt="<?= $image->alt()->esc() ?>" width="<?= $image->resize(154)->width() ?>" height="<?= $image->resize(235)->height() ?>">
-    <?php endif ?>
+    <?php
+    if ($page->image()) :
+      $image = $page->image();
+    else :
+      $image = $site->avatar();
+    endif ?>
+    <img class="w-full border border-brand/30 rounded mb-4" src="<?= $image->toFile()->crop(200, 200, "center")->url() ?>" srcset="<?= $image->srcset(
+                                                                                                                                      [
+                                                                                                                                        '1x'  => ['width' => 200, 'height' => 200, 'crop' => 'center'],
+                                                                                                                                        '2x'  => ['width' => 400, 'height' => 400, 'crop' => 'center'],
+                                                                                                                                        '3x'  => ['width' => 600, 'height' => 600, 'crop' => 'center'],
+                                                                                                                                      ]
+                                                                                                                                    ) ?>" alt="<?= $image->alt()->esc() ?>" width="<?= $image->resize(154)->width() ?>" height="<?= $image->resize(235)->height() ?>">
     <h1 class="text-small text-secondary mb-1"><?= $page->title()->esc() ?></h1>
     <p class="mb-1 italic font-serif"><?= $page->affiliation() ?></p>
     <?php if ($page->role()->isNotEmpty()) : ?>

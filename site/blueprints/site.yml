@@ -57,3 +57,14 @@ tabs:
                 text:
                   - "No"
                   - "Yes"
+
+      - width: 1/2
+        fields:
+          avatar:
+            extends: sections/image
+            label: Avatar
+            help: Default image used for when person does not provide image
+            max: 1
+            image:
+              ratio: 1/1
+              cover: true

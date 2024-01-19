@@ -1150,12 +1150,20 @@ table td {
   resize: both;
 }
 
+.auto-cols-max {
+  grid-auto-columns: max-content;
+}
+
 .grid-flow-row {
   grid-auto-flow: row;
 }
 
 .grid-flow-col {
   grid-auto-flow: column;
+}
+
+.grid-flow-dense {
+  grid-auto-flow: dense;
 }
 
 .grid-cols-2 {
@@ -1168,6 +1176,34 @@ table td {
 
 .grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.grid-cols-\[repeat\(4\2c minmax\(100px\2c 300px\)\)\] {
+  grid-template-columns: repeat(4,minmax(100px,300px));
+}
+
+.grid-cols-\[repeat\(minmax\(100px\2c 300px\)\)\] {
+  grid-template-columns: repeat(minmax(100px,300px));
+}
+
+.grid-cols-\[repeat\(5\2c minmax\(100px\2c 300px\)\)\] {
+  grid-template-columns: repeat(5,minmax(100px,300px));
+}
+
+.grid-cols-\[repeat\(auto-fill\2c minmax\(100px\2c 300px\)\)\] {
+  grid-template-columns: repeat(auto-fill,minmax(100px,300px));
+}
+
+.grid-cols-\[repeat\(auto-fill\2c minmax\(100px\2c 200px\)\)\] {
+  grid-template-columns: repeat(auto-fill,minmax(100px,200px));
+}
+
+.grid-cols-\[repeat\(auto-fill\2c minmax\(200px\2c 500px\)\)\] {
+  grid-template-columns: repeat(auto-fill,minmax(200px,500px));
+}
+
+.grid-cols-\[repeat\(auto-fill\2c minmax\(200px\2c 300px\)\)\] {
+  grid-template-columns: repeat(auto-fill,minmax(200px,300px));
 }
 
 .flex-row {
@@ -1733,6 +1769,16 @@ hr {
   }
 
   .xl\:grid-cols-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .xl\:grid-cols-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1536px) {
+  .\32xl\:grid-cols-6 {
     grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 }

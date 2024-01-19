@@ -65,18 +65,23 @@
     </div>
   </div>
 
-  <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 mx-auto list">
+  <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 sm:gap-6 mx-auto list">
     <?php foreach ($page->children()->listed() as $person) : ?>
       <li class="cursor-pointer p-2 rounded-sm hover:outline hover:outline-brand hover:bg-brand/10" x-data="{ open : false }" @click="open = true" data-title="<?= $person->title() ?>" data-role="<?= $person->role() ?? null ?>" data-research-interests="<?= $person->interests() ?? null ?>">
-        <?php if ($image = $person->image()) : ?>
-          <img class="w-full border border-brand/30 rounded mb-4" src="<?= $image->crop(200, 200, "center")->url() ?>" srcset="<?= $image->srcset(
-                                                                                                                                  [
-                                                                                                                                    '1x'  => ['width' => 200, 'height' => 200, 'crop' => 'center'],
-                                                                                                                                    '2x'  => ['width' => 400, 'height' => 400, 'crop' => 'center'],
-                                                                                                                                    '3x'  => ['width' => 600, 'height' => 600, 'crop' => 'center'],
-                                                                                                                                  ]
-                                                                                                                                ) ?>" alt="<?= $image->alt()->esc() ?>" width="<?= $image->resize(154)->width() ?>" height="<?= $image->resize(235)->height() ?>">
-        <?php endif ?>
+        <?php
+        if ($person->image()) :
+          $image = $person->image();
+        else :
+          $image = $site->avatar();
+        endif ?>
+        <img class="w-full border border-brand/30 rounded mb-4" src="<?= $image->toFile()->crop(200, 200, "center")->url() ?>" srcset="<?= $image->srcset(
+                                                                                                                                          [
+                                                                                                                                            '1x'  => ['width' => 200, 'height' => 200, 'crop' => 'center'],
+                                                                                                                                            '2x'  => ['width' => 400, 'height' => 400, 'crop' => 'center'],
+                                                                                                                                            '3x'  => ['width' => 600, 'height' => 600, 'crop' => 'center'],
+                                                                                                                                          ]
+                                                                                                                                        ) ?>" alt="<?= $image->alt()->esc() ?>" width="<?= $image->resize(154)->width() ?>" height="<?= $image->resize(235)->height() ?>">
+
         <p class="text-small text-secondary mb-1"><?= $person->title() ?></p>
         <p class="mb-1 italic font-serif line-clamp-1"><?= $person->affiliation() ?></p>
         <?php if ($person->role()->isNotEmpty()) : ?>

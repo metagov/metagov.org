@@ -1,5 +1,5 @@
 <?php snippet('header') ?>
-<div id="people" class="container">
+<div class="container">
   <div class="mb-8">
     <h1 class="text-xxl"><?= $page->title()->esc() ?></h1>
     <h2 class="text-large font-serif font-normal">
@@ -7,7 +7,7 @@
     </h2>
   </div>
 
-  <div class="mb-8 prose">
+  <div class="mb-8 prose max-w-prose">
     <?php foreach ($page->content()->content()->toBlocks() as $block) : ?>
       <div id="<?= $block->id() ?>" class="block block-type-<?= $block->type() ?>">
         <?php snippet('blocks/' . $block->type(), [
@@ -17,68 +17,88 @@
       </div>
     <?php endforeach ?>
   </div>
-
-  <div class="mb-8 lg:grid lg:grid-cols-2 xl:grid-cols-3">
+  <div class="mb-8 lg:grid lg:grid-cols-3 xl:grid-cols-3 grid-flow-row gap-4">
+    <?php // splitting team into 3 equal columns by checking index against size of team.
+    $index = 0;
+    $teamSplit = 1;
+    $splitEnd = true;
+    ?>
     <?php foreach ($page->team()->split() as $role) : ?>
-      <h3>
-        <?= $role ?>
-      </h3>
-      <?php $people = $page->children()->filterBy('role', $role, ',') ?>
-      <ul class="grid grid-cols-2">
-        <?php foreach ($people as $person) : ?>
-          <li>
-            <p class="text-secondary mb-0"><?= $person->title() ?></p>
-            <p class="font-serif"><?= $person->affiliation() ?></p>
-          </li>
-        <?php endforeach ?>
-      </ul>
+      <?php if ($splitEnd) : ?>
+        <div>
+        <?php endif ?>
+        <h3 class="text-medium mb-4">
+          <?= $role ?>
+        </h3>
+        <?php $people = $page->children()->filterBy('role', $role, ',') ?>
+        <ul class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-2 gap-4">
+          <?php foreach ($people as $person) : ?>
+            <?php $index += 1 ?>
+            <li>
+              <p class="text-secondary mb-0"><?= $person->title() ?></p>
+              <p class="font-serif"><?= $person->affiliation() ?></p>
+            </li>
+          <?php endforeach ?>
+        </ul>
+        <?php
+        if ($index > ($teamSize / 3) * $teamSplit) :
+          $splitEnd = true;
+          $teamSplit += 1;
+        else :
+          $splitEnd = false;
+        endif;
+        ?>
+        <?php if ($splitEnd) : ?>
+        </div>
+      <?php endif ?>
     <?php endforeach ?>
   </div>
-
-  <section>
-    <div class="mb-8 flex justify-between items-center">
-      <h3 class="text-medium">Community directory</h3>
-      <div class="flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-4">
-        <span>FILTERS:</span>
-        <?php snippet('blocks/filter', ['filters' => $roles, 'group' => 'role', 'label' => 'Role']) ?>
-        <?php snippet('blocks/filter', ['filters' => $researchInterests, 'group' => 'researchInterests', 'label' => 'Research interests']) ?>
-      </div>
+</div>
+<hr class="border-brand" />
+<section id="people">
+  <div class="mb-8 md:flex justify-between items-center">
+    <h3 class="text-medium mb-4">Community directory</h3>
+    <div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
+      <span>FILTERS:</span>
+      <?php snippet('blocks/filter', ['filters' => $roles, 'group' => 'role', 'label' => 'Role']) ?>
+      <?php snippet('blocks/filter', ['filters' => $researchInterests, 'group' => 'researchInterests', 'label' => 'Research interests']) ?>
     </div>
+  </div>
 
-    <ul class="grid sm:grid-cols-4 xl:grid-cols-6 gap-4 sm:gap-6 mx-auto list">
-      <?php foreach ($page->children()->listed() as $person) : ?>
-        <li class="cursor-pointer p-2 rounded-sm hover:outline hover:outline-brand hover:bg-brand/10" x-data="{ open : false }" @click="open = true" data-title="<?= $person->title() ?>" data-role="<?= $person->role() ?? null ?>" data-research-interests="<?= $person->interests() ?? null ?>">
-          <?php if ($image = $person->image()) : ?>
-            <img class="w-full border border-brand/30 rounded mb-4" src="<?= $image->crop(200, 200, "center")->url() ?>" srcset="<?= $image->srcset(
-                                                                                                                                    [
-                                                                                                                                      '1x'  => ['width' => 200, 'height' => 200, 'crop' => 'center'],
-                                                                                                                                      '2x'  => ['width' => 400, 'height' => 400, 'crop' => 'center'],
-                                                                                                                                      '3x'  => ['width' => 600, 'height' => 600, 'crop' => 'center'],
-                                                                                                                                    ]
-                                                                                                                                  ) ?>" alt="<?= $image->alt()->esc() ?>" width="<?= $image->resize(154)->width() ?>" height="<?= $image->resize(235)->height() ?>">
-          <?php endif ?>
-          <p class="text-small text-secondary mb-1"><?= $person->title() ?></p>
-          <p class="mb-1 italic font-serif"><?= $person->affiliation() ?></p>
-          <?php if ($person->role()->isNotEmpty()) : ?>
-            <span class="button inline-block mb-1"><?= $person->role()->split()[0] ?></span>
-          <?php endif ?>
-          <div>
-            <?php
-            $links = $person->links()->toStructure();
-            foreach ($links as $link) : ?>
-              <a class="inline-block mr-2" href="<?= $link->content()->url() ?>" target="_blank">
-                <?= $link->content()->text() ?>
-              </a>
-            <?php endforeach ?>
-          </div>
-          <?php snippet('modal', ['page' => $person, 'title' => $person->title(), 'subheading' => '', 'small' => 'true']) ?>
-        </li>
-      <?php endforeach ?>
-    </ul>
-    <div id="no-result" class="hidden">
-      <p>No people found</p>
-    </div>
-  </section>
+  <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 mx-auto list">
+    <?php foreach ($page->children()->listed() as $person) : ?>
+      <li class="cursor-pointer p-2 rounded-sm hover:outline hover:outline-brand hover:bg-brand/10" x-data="{ open : false }" @click="open = true" data-title="<?= $person->title() ?>" data-role="<?= $person->role() ?? null ?>" data-research-interests="<?= $person->interests() ?? null ?>">
+        <?php if ($image = $person->image()) : ?>
+          <img class="w-full border border-brand/30 rounded mb-4" src="<?= $image->crop(200, 200, "center")->url() ?>" srcset="<?= $image->srcset(
+                                                                                                                                  [
+                                                                                                                                    '1x'  => ['width' => 200, 'height' => 200, 'crop' => 'center'],
+                                                                                                                                    '2x'  => ['width' => 400, 'height' => 400, 'crop' => 'center'],
+                                                                                                                                    '3x'  => ['width' => 600, 'height' => 600, 'crop' => 'center'],
+                                                                                                                                  ]
+                                                                                                                                ) ?>" alt="<?= $image->alt()->esc() ?>" width="<?= $image->resize(154)->width() ?>" height="<?= $image->resize(235)->height() ?>">
+        <?php endif ?>
+        <p class="text-small text-secondary mb-1"><?= $person->title() ?></p>
+        <p class="mb-1 italic font-serif line-clamp-1"><?= $person->affiliation() ?></p>
+        <?php if ($person->role()->isNotEmpty()) : ?>
+          <span class="button inline-block mb-1"><?= $person->role()->split()[0] ?></span>
+        <?php endif ?>
+        <div>
+          <?php
+          $links = $person->links()->toStructure();
+          foreach ($links as $link) : ?>
+            <a class="inline-block mr-2" href="<?= $link->content()->url() ?>" target="_blank">
+              <?= $link->content()->text() ?>
+            </a>
+          <?php endforeach ?>
+        </div>
+        <?php snippet('modal', ['page' => $person, 'title' => $person->title(), 'subheading' => '', 'small' => 'true']) ?>
+      </li>
+    <?php endforeach ?>
+  </ul>
+  <div id="no-result" class="hidden">
+    <p>No people found</p>
+  </div>
+</section>
 </div>
 <?php snippet('footer') ?>
 

@@ -13,3 +13,17 @@ fields:
         type: text
       description:
         type: textarea
+      in_order:
+        label: Show in ordered tab
+        type: toggle
+        default: "Yes"
+        text:
+          - "No"
+          - "Yes"
+      width_order:
+        label: Width of windows in ordered tab
+        type: toggle
+        default: "Half width"
+        text:
+          - "Half width"
+          - "Full width"

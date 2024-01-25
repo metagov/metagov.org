@@ -6,10 +6,6 @@ tabs:
     columns:
       - width: 1/2
         sections:
-          projects: sections/projects
-
-      - width: 1/2
-        sections:
           pages:
             type: pages
             templates:
@@ -17,6 +13,10 @@ tabs:
               - home
               - projects
               - people
+
+      - width: 1/2
+        sections:
+          projects: sections/projects
   settings:
     label: Site settings
     icon: cog

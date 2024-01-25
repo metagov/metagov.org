@@ -39,9 +39,14 @@ columns:
         type: textarea
         maxlength: 600
       participate:
-        label: Participate
+        label: Paths to participating
         type: textarea
-        help: Paths to participating + discussion forum
+        when:
+          seeking_participants: true
+        required: true
+      discussionForum:
+        type: textarea
+        label: Discussion forum
       meetings:
         type: textarea
 
@@ -69,7 +74,7 @@ columns:
               - "Paused"
               - "Pending Funding"
               - "Inactive"
-          seekingParticipants:
+          seeking_participants:
             label: Seeking participants
             type: toggle
             text:

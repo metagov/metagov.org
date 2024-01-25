@@ -44,7 +44,7 @@ columns:
         when:
           seeking_participants: true
         required: true
-      discussionForum:
+      discussion_forum:
         type: textarea
         label: Discussion forum
       meetings:
@@ -65,7 +65,7 @@ columns:
             type: date
             time: false
             default: now
-          projectStatus:
+          project_status:
             label: Project status
             type: tags
             options:
@@ -103,7 +103,7 @@ columns:
               - "Market Intervention"
               - "Data Standards"
               - "Technical Standard"
-          researchDirectors:
+          research_directors:
             label: Research Directors
             type: pages
             query: site.find('people').children.filterBy('role','researchDirector')

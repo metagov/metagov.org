@@ -6,6 +6,10 @@
   display: none !important;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 @layer components {
   .tag {
     @apply px-3 pt-2 pb-1 rounded-[20px] border-2 uppercase font-mono inline-block text-tag text-brand border-brand bg-default bg-opacity-5 hover:bg-brand hover:bg-opacity-5;
@@ -142,6 +146,26 @@
 
   .search {
     @apply hover:bg-brand/15 bg-white dark:bg-default p-2 text-brand placeholder-brand/75 font-sans text-small border-brand border rounded-sm;
+  }
+
+  .highlight-section {
+    @apply -mx-2 px-2 md:-mx-6 md:px-6;
+    animation: pulse-bg 2s;
+    animation-delay: 0.5s;
+  }
+
+  @keyframes pulse-bg {
+    0% {
+      @apply bg-brand/0;
+    }
+
+    50% {
+      @apply bg-brand/50;
+    }
+
+    100% {
+      @apply bg-brand/0;
+    }
   }
 }
 

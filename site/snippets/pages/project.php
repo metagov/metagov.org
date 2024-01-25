@@ -1,6 +1,6 @@
-<div class="container max-w-3xl pb-16">
+<div class="container max-w-3xl pb-16" x-data="{ participate: false }" x-init="setTimeout(() => participate = false, 5000)">
   <div class="mb-8">
-    <div class="mb-2 flex gap-4 items-start items-center">
+    <div class="mb-2 flex gap-4 items-center">
       <h1 class="text-xxl"><?= $page->title()->esc() ?></h1>
       <?php foreach ($page->projectStatus()->split() as $key => $status) : ?>
         <?php if ($key == 0) : ?>
@@ -9,12 +9,12 @@
           <span class="tag secondary active"><?= $status ?></span>
         <?php endif ?>
       <?php endforeach ?>
-      <?php if ($page->seekingParticipants()->toBool()) : ?>
-        <span class="tag secondary active">✅ SEEKING PARTICIPANTS</span>
+      <?php if ($page->seeking_participants()->toBool()) : ?>
+        <a href="#participate" class="tag secondary active block" @click="participate = true">✅ SEEKING PARTICIPANTS</a>
       <?php endif ?>
     </div>
     <h2 class="font-serif text-large">
-      <?= $page->subHeading()->esc() ?>
+      <?= $page->subheading()->esc() ?>
     </h2>
   </div>
 
@@ -80,10 +80,19 @@
     <?php endif ?>
 
     <?php if ($page->participate()->isNotEmpty()) : ?>
-      <div class="mb-8">
-        <h5>PATHS TO PARTICIPATION + DISCUSSION FORUM</h5>
+      <div id="participate" class="mb-8" :class="{ 'highlight-section': participate }">
+        <h5>PATHS TO PARTICIPATION</h5>
         <div class="prose">
           <?= $page->participate()->kt() ?>
+        </div>
+      </div>
+    <?php endif ?>
+
+    <?php if ($page->participate()->isNotEmpty()) : ?>
+      <div class="mb-8">
+        <h5>DISCUSSION FORUM</h5>
+        <div class="prose">
+          <?= $page->discussion_forum()->kt() ?>
         </div>
       </div>
     <?php endif ?>

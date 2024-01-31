@@ -94,6 +94,16 @@
         <div class="prose">
           <?= $page->discussion_forum()->kt() ?>
         </div>
+        <!-- <div class="relative mb-8 mt-1 border-t border-t-brand overflow-hidden">
+          <div class="border border-brand border-t-0" style="position: relative; top: -55px">
+            <iframe class="w-full aspect-video invert dark:invert-0" src="https://www.linen.dev/s/metaproxy/c/general"></iframe>
+          </div>
+          <div class="grid absolute place-content-center bottom-12 left-0 w-full h-20 z-50 m-1">
+            <span class="tag w-fit active">
+              JOIN THE COMMUNITY
+            </span>
+          </div>
+        </div> -->
       </div>
     <?php endif ?>
 

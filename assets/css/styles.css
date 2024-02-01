@@ -910,6 +910,10 @@ table td {
   }
 }
 
+.pointer-events-none {
+  pointer-events: none;
+}
+
 .fixed {
   position: fixed;
 }
@@ -1091,6 +1095,18 @@ table td {
   height: 100vh;
 }
 
+.h-\[85vh\] {
+  height: 85vh;
+}
+
+.h-\[75vh\] {
+  height: 75vh;
+}
+
+.h-\[80vh\] {
+  height: 80vh;
+}
+
 .max-h-72 {
   max-height: 18rem;
 }
@@ -1101,6 +1117,10 @@ table td {
 
 .max-h-\[85vh\] {
   max-height: 85vh;
+}
+
+.max-h-\[80vh\] {
+  max-height: 80vh;
 }
 
 .min-h-\[calc\(100vh-250px\)\] {
@@ -1167,6 +1187,10 @@ table td {
 
 .max-w-prose {
   max-width: 65ch;
+}
+
+.max-w-\[600px\] {
+  max-width: 600px;
 }
 
 .flex-shrink-0 {
@@ -1418,6 +1442,16 @@ table td {
 .py-\[30px\] {
   padding-top: 30px;
   padding-bottom: 30px;
+}
+
+.py-16 {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .pb-16 {

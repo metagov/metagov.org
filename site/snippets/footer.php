@@ -1,11 +1,16 @@
-</main>
+<?php if (!$ajax) : ?>
 
-<footer class="grid grid-cols-3 w-full px-6 py-[30px]">
-  <span class="text-brand mb-0">Metagov –– </span>
-  <?php snippet('color-mode') ?>
-  <span class="text-brand text-right mb-0">–– <?= date("Y"); ?></span>
-</footer>
+  </main>
 
-</body>
+  <footer class="grid grid-cols-3 w-full px-6 py-[30px]">
+    <span class="text-brand mb-0">Metagov –– </span>
+    <?php snippet('color-mode') ?>
+    <span class="text-brand text-right mb-0">–– <?= date("Y"); ?></span>
+  </footer>
 
-</html>
+  <?php snippet('modal-ajax') ?>
+
+  </body>
+
+  </html>
+<?php endif ?>

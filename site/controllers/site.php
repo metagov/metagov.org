@@ -6,5 +6,6 @@ return function ($page, $pages, $site, $kirby) {
   $metaImage = $site->seoImage()->toFile()->resize(1200, 630)->url();
   if ($page->cover()->isNotEmpty())
     $metaImage = $page->cover()->toFile()->resize(1200, 630)->url();
-  return compact('titleTag', 'metaDescription', 'metaImage');
+  $ajax = $kirby->request()->header('Hx-Request', null);
+  return compact('titleTag', 'metaDescription', 'metaImage', 'ajax');
 };

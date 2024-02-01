@@ -1,6 +1,6 @@
 <div class="window-scrollbar bg-bg dark:bg-default border border-secondary dark:border-secondary-dark opacity-[0.85] hover:opacity-100 shadow-window hover:shadow-windowhover transition-[opacity,box-shadow] flex flex-col h-full relative">
   <div class="border-b bg-bg dark:bg-default border-secondary dark:border-secondary-dark flex gap-2 items-center px-2 py-1.5 text-secondary dark:text-secondary-dark shrink-0">
-    <?php if (!empty($modal)) : ?>
+    <?php if (!empty($url)) : ?>
       <a href="<?= $url ?>">
         <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M0.5 11.5V0.5H11.5V11.5H0.5Z" stroke="#008060" stroke-miterlimit="10" />

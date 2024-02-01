@@ -1,4 +1,4 @@
-<div id="projects" class="container max-w-[1088px]">
+<div id="projects" class="container max-w-[1088px] py-8">
   <div class="mb-12">
     <h1 class="text-xl font-semibold mb-2">Projects</h1>
   </div>

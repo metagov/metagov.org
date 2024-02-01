@@ -1,4 +1,4 @@
-<div class="container max-w-3xl pb-16" x-data="{ participate: false }" x-init="setTimeout(() => participate = false, 5000)">
+<div class="container max-w-3xl py-8" x-data="{ participate: false }" x-init="setTimeout(() => participate = false, 5000)">
   <div class="mb-8">
     <div class="mb-2 flex gap-4 items-center">
       <h1 class="text-xxl"><?= $page->title()->esc() ?></h1>

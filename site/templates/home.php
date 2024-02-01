@@ -90,7 +90,7 @@
 
         </button>
       <?php elseif ($page) : ?>
-        <button class="draggable absolute w-[450px] h-[275px] chaos-window-<?= $index + 1 ?> prose" href="#" @click="$dispatch('toggle_modal')" hx-get="<?= $page->url() ?>" hx-push-url="true" hx-target="#modal-content" hx-swap="innerHTML transition:true">
+        <button class="draggable absolute w-[450px] h-[275px] chaos-window-<?= $index + 1 ?> prose" href="#" @click="$dispatch('toggle_modal')" hx-get="<?= $page->url() ?>" hx-push-url="true" hx-target="#modal-content" hx-swap="innerHTML settle:5s">
           <?php snippet('window', ['title' => $window->title(), 'subheading' => $window->subheading()], slots: true) ?>
 
           <?php if ($image = $page->cover()->toFile()) : ?>

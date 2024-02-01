@@ -1075,6 +1075,10 @@ table td {
   height: 5rem;
 }
 
+.h-4 {
+  height: 1rem;
+}
+
 .h-8 {
   height: 2rem;
 }
@@ -1099,10 +1103,6 @@ table td {
   height: 100vh;
 }
 
-.h-4 {
-  height: 1rem;
-}
-
 .max-h-72 {
   max-height: 18rem;
 }
@@ -1121,6 +1121,10 @@ table td {
 
 .w-1\/2 {
   width: 50%;
+}
+
+.w-4 {
+  width: 1rem;
 }
 
 .w-8 {
@@ -1151,10 +1155,6 @@ table td {
 .w-min {
   width: -moz-min-content;
   width: min-content;
-}
-
-.w-4 {
-  width: 1rem;
 }
 
 .min-w-\[200px\] {
@@ -1238,16 +1238,6 @@ table td {
 
 .animate-pulse {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.animate-spin {
-  animation: spin 1s linear infinite;
 }
 
 .cursor-pointer {
@@ -1380,6 +1370,11 @@ table td {
   background-color: rgb(254 255 254 / var(--tw-bg-opacity));
 }
 
+.bg-brand {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 204 153 / var(--tw-bg-opacity));
+}
+
 .bg-brand\/\[0\.15\] {
   background-color: rgb(0 204 153 / 0.15);
 }
@@ -1391,11 +1386,6 @@ table td {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
-.bg-brand {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 204 153 / var(--tw-bg-opacity));
 }
 
 .fill-brand {
@@ -1703,18 +1693,6 @@ hr {
   --tw-text-opacity: 1;
   color: rgb(1 27 26 / var(--tw-text-opacity));
 }
-
-/* htmx animations */
-
-/* .fade-me-in.htmx-settling {
-  opacity: 1;
-  transition: opacity 0.5s ease-out;
-  transition-delay: 0.5s;
-}
-
-.fade-me-in {
-  opacity: 0;
-} */
 
 .hover\:bg-brand\/10:hover {
   background-color: rgb(0 204 153 / 0.1);

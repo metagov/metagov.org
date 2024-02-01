@@ -208,15 +208,3 @@ hr {
 .active .page {
   @apply text-white dark:text-default bg-brand;
 }
-
-/* htmx animations */
-
-/* .fade-me-in.htmx-settling {
-  opacity: 1;
-  transition: opacity 0.5s ease-out;
-  transition-delay: 0.5s;
-}
-
-.fade-me-in {
-  opacity: 0;
-} */

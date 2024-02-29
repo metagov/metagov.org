@@ -3,6 +3,8 @@ icon: 🏡
 fields:
   windows:
     type: structure
+    max: 10
+    min: 5
     fields:
       page:
         type: pages

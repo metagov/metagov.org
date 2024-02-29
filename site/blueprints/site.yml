@@ -30,34 +30,37 @@ tabs:
           seoTitle:
             label: SEO title
             type: text
+            required: true
           seoDescription:
             label: SEO description
             type: textarea
             buttons: false
+            required: true
           seoImage:
             label: SEO Image
             type: files
             multiple: false
             layout: cards
             size: large
-
+            required: true
       - width: 1/2
         fields:
           mainMenu:
             type: structure
             label: Main menu pages
             help: Toggle seperator to true to add seperator below menu item.
+            required: true
             fields:
               page:
                 type: pages
                 multiple: false
+                required: true
               seperator:
                 type: toggle
                 help: Toggle seperator to true/yes to add seperator below menu item.
                 text:
                   - "No"
                   - "Yes"
-
       - width: 1/2
         fields:
           avatar:
@@ -65,6 +68,7 @@ tabs:
             label: Avatar
             help: Default image used for when person does not provide image
             max: 1
+            required: true
             image:
               ratio: 1/1
               cover: true

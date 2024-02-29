@@ -21,6 +21,7 @@ columns:
         label: Subheading
         type: text
         validate: notEmpty
+        required: true
       cover:
         label: Cover image
         type: files
@@ -30,6 +31,7 @@ columns:
         uploads:
           template: image
         validate: notEmpty
+        required: true
       website:
         label: Website
         description: Link to project site for iframe / embedding

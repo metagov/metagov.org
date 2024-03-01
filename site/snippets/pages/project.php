@@ -1,5 +1,13 @@
-<div class="container max-w-3xl py-8" x-data="{ participate: false }" x-init="setTimeout(() => participate = false, 5000)">
+<div class="container max-w-3xl py-4" x-data="{ participate: false }" x-init="setTimeout(() => participate = false, 5000)">
   <div class="mb-8">
+      <!-- Nav -->
+    <div class="mb-8 flex flex-wrap">
+        <div class="flex-auto text-left">
+          <a href="<?= $page->parent()->url() ?>">&larr; All projects</a>
+        </div>
+    </div>
+    <!-- End Nav -->
+
     <div class="mb-2 flex gap-4 items-center">
       <h1 class="text-xxl"><?= $page->title()->esc() ?></h1>
       <?php foreach ($page->projectStatus()->split() as $key => $status) : ?>
@@ -100,27 +108,32 @@
     <?php endif ?>
 
     <hr />
-
+    
+    <!-- Nav -->
     <div class="flex flex-wrap">
-      <div class="flex-auto text-left">
-        <?php
-        $collection = $page->siblings()->sortBy('title', 'asc');
-        if ($prev = $page->prevListed($collection)) : ?>
-          &larr; <a href="<?= $prev->url() ?>"><?= $prev->title() ?></a>
-        <?php endif ?>
-      </div>
+        <div class="flex-auto text-left">
+          <?php
+          $collection = $page->siblings()->sortBy('title', 'asc');
+          if ($prev = $page->prevListed($collection)) : ?>
+            &larr; <a href="<?= $prev->url() ?>"><?= $prev->title() ?></a>
+          <?php endif ?>
+        </div>
 
-      <div class="flex-auto text-center">
-        <a href="<?= $page->parent()->url() ?>">All projects</a>
-      </div>
+        <div class="flex-auto text-center">
+          <a href="<?= $page->parent()->url() ?>">All projects</a>
+        </div>
 
-      <div class="flex-auto text-right">
-        <?php
-        $collection = $page->siblings()->sortBy('title', 'asc');
-        if ($next = $page->nextListed($collection)) : ?>
-          <a href="<?= $next->url() ?>"><?= $next->title() ?></a> &rarr;
-        <?php endif ?>
-      </div>
+        <div class="flex-auto text-right">
+          <?php
+          $collection = $page->siblings()->sortBy('title', 'asc');
+          if ($next = $page->nextListed($collection)) : ?>
+            <a href="<?= $next->url() ?>"><?= $next->title() ?></a> &rarr;
+          <?php endif ?>
+        </div>
+    </div>
+    <!-- End Nav -->
+
 
   </article>
+
 </div>

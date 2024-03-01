@@ -57,7 +57,7 @@
 <hr class="border-secondary dark:border-secondary-dark" />
 <section id="people">
   <div class="mb-8 md:flex justify-between items-center">
-    <h3 class="text-medium mb-4">Community directory</h3>
+    <h3 class="text-medium mb-4">Directory</h3>
     <div class="flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
       <span>FILTERS:</span>
       <input class="hidden md:block search" placeholder="Search" />

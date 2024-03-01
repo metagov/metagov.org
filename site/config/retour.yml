@@ -1,0 +1,8 @@
+redirects:
+  - 
+    from: redirect_me
+    to: page://KF70fhwNULTDRYkW
+    status: 307
+    priority: false
+    comment: Testing redirect plugin
+    creator: hi@jackmurraybrown.com

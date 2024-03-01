@@ -96,8 +96,8 @@ main {
   }
 
   .filter-checkbox input[type="checkbox"] {
-    @apply absolute opacity-0 w-4 h-4;
-    right: 26px;
+    @apply absolute opacity-0 w-4 h-4 cursor-pointer;
+    right: 8px;
   }
 
   /* visually show focus outline when the SVG receives focus */

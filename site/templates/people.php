@@ -31,7 +31,7 @@
           <?= $role ?>
         </h3>
         <?php $people = $page->children()->filterBy('role', $role, ',') ?>
-        <ul class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-2 gap-4">
+        <ul class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-2 gap-4 mb-8">
           <?php foreach ($people as $person) : ?>
             <?php $index += 1 ?>
             <li>

@@ -1081,6 +1081,10 @@ article h6,
   margin-top: -5.5rem;
 }
 
+.mb-10 {
+  margin-bottom: 2.5rem;
+}
+
 .line-clamp-1 {
   overflow: hidden;
   display: -webkit-box;
@@ -1206,6 +1210,10 @@ article h6,
   min-width: 200px;
 }
 
+.max-w-2xl {
+  max-width: 42rem;
+}
+
 .max-w-3xl {
   max-width: 48rem;
 }
@@ -1228,30 +1236,6 @@ article h6,
 
 .max-w-prose {
   max-width: 65ch;
-}
-
-.max-w-sm {
-  max-width: 24rem;
-}
-
-.max-w-xl {
-  max-width: 36rem;
-}
-
-.max-w-2xl {
-  max-width: 42rem;
-}
-
-.max-w-\[400px\] {
-  max-width: 400px;
-}
-
-.max-w-\[300px\] {
-  max-width: 300px;
-}
-
-.max-w-\[250px\] {
-  max-width: 250px;
 }
 
 .flex-auto {
@@ -1705,9 +1689,14 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+main {
+  min-height: calc(100vh - 200px);
+}
+
 /* scrollbar */
 
-.modal-text p, .modal-text li {
+.modal-text p,
+.modal-text li {
   text-align: left;
   font-size: 1rem;
   line-height: 19.2px;

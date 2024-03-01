@@ -25,7 +25,7 @@
   <article>
 
     <!-- Project meta -->
-    <div class="mb-8 grid grid-cols-3 justify-evenly gap-6">
+    <div class="mb-8 grid grid-cols-2 md:grid-cols-3 justify-evenly gap-6">
       <div>
         <?php if ($page->links()->isNotEmpty()) : ?>
           <h5 class="mb-2">LINKS</h5>
@@ -61,7 +61,7 @@
             <?php
             $members =  $page->members()->toPages();
             foreach ($members as $member) : ?>
-              <p><?= $member->title() ?></p>
+              <a class="inline-block mr-2" href="/people/<?= $member->slug() ?>"><?= $member->title() ?></a>
             <?php endforeach ?>
           </div>
         <?php endif ?>
@@ -69,7 +69,7 @@
       </div>
     </div>
 
-    
+
 
     <!-- Project body -->
     <?php if ($page->description()->isNotEmpty()) : ?>
@@ -81,7 +81,7 @@
       </div>
     <?php endif ?>
 
-    <?php if ($page->participate()->isNotEmpty()) : ?>
+    <?php if ($page->seeking_participants()->toBool()) : ?>
       <div id="participate" class="mb-8" :class="{ 'highlight-section': participate }">
         <h5>PATHS TO PARTICIPATION</h5>
         <div class="prose">
@@ -90,42 +90,23 @@
       </div>
     <?php endif ?>
 
-    <?php if ($page->participate()->isNotEmpty()) : ?>
-      <div class="mb-8">
-        <h5>DISCUSSION FORUM</h5>
-        <div class="prose">
-          <?= $page->discussion_forum()->kt() ?>
-        </div>
-        <!-- <div class="relative mb-8 mt-1 border-t border-t-brand overflow-hidden">
-          <div class="border border-brand border-t-0" style="position: relative; top: -55px">
-            <iframe class="w-full aspect-video invert dark:invert-0" src="https://www.linen.dev/s/metaproxy/c/general"></iframe>
-          </div>
-          <div class="grid absolute place-content-center bottom-12 left-0 w-full h-20 z-50 m-1">
-            <span class="tag w-fit active">
-              JOIN THE COMMUNITY
-            </span>
-          </div>
-        </div> -->
-      </div>
-    <?php endif ?>
-
     <?php if ($page->meetings()->isNotEmpty()) : ?>
       <div>
-        <h5>MEETINGS</h5>
+        <h5>DISCUSSION FORUM</h5>
         <div class="prose">
           <?= $page->meetings()->kt() ?>
         </div>
       </div>
     <?php endif ?>
 
-      <hr />
+    <hr />
 
     <div class="flex flex-wrap">
       <div class="flex-auto text-left">
         <?php
-          $collection = $page->siblings()->sortBy('title', 'asc');
-          if($prev = $page->prevListed($collection)): ?>
-            &larr; <a href="<?= $prev->url() ?>"><?= $prev->title() ?></a>
+        $collection = $page->siblings()->sortBy('title', 'asc');
+        if ($prev = $page->prevListed($collection)) : ?>
+          &larr; <a href="<?= $prev->url() ?>"><?= $prev->title() ?></a>
         <?php endif ?>
       </div>
 
@@ -135,10 +116,10 @@
 
       <div class="flex-auto text-right">
         <?php
-          $collection = $page->siblings()->sortBy('title', 'asc');
-          if($next = $page->nextListed($collection)): ?>
-            <a href="<?= $next->url() ?>"><?= $next->title() ?></a> &rarr;
-          <?php endif ?>
+        $collection = $page->siblings()->sortBy('title', 'asc');
+        if ($next = $page->nextListed($collection)) : ?>
+          <a href="<?= $next->url() ?>"><?= $next->title() ?></a> &rarr;
+        <?php endif ?>
       </div>
 
   </article>

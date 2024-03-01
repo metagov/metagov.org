@@ -1,6 +1,6 @@
 <style>
   .chaos-window-1 {
-    top: 24%;
+    top: 25vh;
     left: 0;
     right: 0;
     margin-left: auto;
@@ -9,7 +9,7 @@
   }
 
   .chaos-window-2 {
-    top: 20%;
+    top: 16%;
     left: 10%;
     z-index: 999;
   }
@@ -21,7 +21,7 @@
   }
 
   .chaos-window-4 {
-    top: 36%;
+    top: 32%;
     right: 10%;
     z-index: 997;
   }
@@ -39,25 +39,25 @@
   }
 
   .chaos-window-7 {
-    top: 55%;
+    top: 45%;
     right: 18%;
     z-index: 994;
   }
 
   .chaos-window-8 {
-    top: 60%;
+    top: 58%;
     left: 10%;
     z-index: 993;
   }
 
   .chaos-window-9 {
-    top: 70%;
+    top: 75%;
     left: 18%;
     z-index: 992;
   }
 
   .chaos-window-10 {
-    top: 72%;
+    top: 62%;
     right: 12%;
     z-index: 991;
   }
@@ -77,7 +77,7 @@
   <image class="p-8 sm:p-0 sm:w-[480px] sm:h-[480px] fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-10" alt="Dithered image of the globe in green" src="/src/globe-dithered.png" width="480px" height="480px" />
   <?php snippet('chaos-order') ?>
   <!-- chaos -->
-  <div x-cloak x-show="!order" x-transition.duration.450ms x-transition:enter.delay.500ms style="height: <?php echo $chaosHeight ?>px" class="min-h-[calc(100vh-250px)] relative mt-16 mb-16" :class="order ? 'opacity-0 ' : ''" id="window-container">
+  <div x-cloak x-show="!order" x-transition.duration.450ms x-transition:enter.delay.500ms style="height: <?php echo $chaosHeight ?>px" class="min-h-[calc(100vh-250px)] relative mt-16" :class="order ? 'opacity-0 ' : ''" id="window-container">
     <?php foreach ($windows as $index => $window) : ?>
       <?php $content = $window->description();
       $page = $window->page()->toPage() ?>

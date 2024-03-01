@@ -68,7 +68,7 @@
 
   <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 sm:gap-6 mx-auto list">
     <?php foreach ($page->children()->listed() as $person) : ?>
-      <li class="cursor-pointer p-2 rounded-sm hover:outline hover:outline-brand hover:bg-brand/10" x-data="{ open : false }" @click="open = true" data-title="<?= $person->title() ?>" data-role="<?= $person->role() ?? null ?>" data-research-interests="<?= $person->interests() ?? null ?>">
+      <li class="cursor-pointer p-2 rounded-sm hover:outline hover:outline-brand hover:bg-brand/10" x-data="{ openPerson : false }" @click="openPerson = true" data-title="<?= $person->title() ?>" data-role="<?= $person->role() ?? null ?>" data-research-interests="<?= $person->interests() ?? null ?>">
         <?php
         if ($person->image()) :
           $image = $person->image();
@@ -97,7 +97,7 @@
             </a>
           <?php endforeach ?>
         </div>
-        <?php snippet('modal', ['page' => $person, 'title' => $person->title(), 'subheading' => '', 'small' => 'true']) ?>
+        <?php snippet('modal-person', ['page' => $person, 'title' => $person->title(), 'subheading' => '', 'small' => 'true']) ?>
       </li>
     <?php endforeach ?>
   </ul>

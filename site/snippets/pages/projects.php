@@ -36,94 +36,97 @@
 
 
 <script>
-  let filters = {
-    category: [],
-    type: [],
-    status: [],
-    participants: []
-  }
-
-  var options = {
-    valueNames: [{
-      data: ['title', 'category', 'type', 'status', 'participants']
-    }]
-  }
-
-  var projectList = new List('projects', options);
-
-  projectList.on('updated', function(list) {
-    if (list.matchingItems.length > 0) {
-      document.getElementById("no-result").style.display = 'hidden'
-    } else {
-      document.getElementById("no-result").style.display = 'block'
-    }
-  });
-
-  const resetFilter = () => {
-    filters = {
+  console.log(window.projectJsExecuted)
+  if (!window.projectJsExecuted) {
+    window.projectJsExecuted = true;
+    console.log('running js')
+    let filters = {
       category: [],
       type: [],
       status: [],
       participants: []
     }
-    updateList()
-  }
 
-  const updateList = () => {
-    projectList.filter(function(item) {
-      let category = false
-      let type = false
-      let status = false
-      let participants = false
-
-      if (filters.category.find((element) => item.values().category.includes(element)) || filters.category.length == 0) {
-        category = true
-      } else {
-        category = false
-      }
-
-      if (filters.type.find((element) => item.values().type.includes(element)) || filters.type.length == 0) {
-        type = true
-      } else {
-        type = false
-      }
-
-      if (filters.status.indexOf(item.values().status) > -1 || filters.status.length == 0) {
-        status = true
-      } else {
-        status = false
-      }
-
-      if (filters.participants.indexOf(item.values().participants) > -1 || filters.participants.length == 0) {
-        participants = true
-      } else {
-        participants = false
-      }
-
-      console.log(filters)
-      console.log(item.values())
-
-      if (category && type && status && participants) return true
-      else return false
-    })
-  }
-
-  const toggleFilter = (e) => {
-    const checked = e.target.checked
-    const value = e.target.dataset.value
-    const group = e.target.dataset.group
-
-    if (checked) {
-      filters[group].push(value)
-    } else {
-      const index = filters[group].indexOf(value);
-      if (index > -1) {
-        filters[group].splice(index, 1);
-      }
+    var options = {
+      valueNames: [{
+        data: ['title', 'category', 'type', 'status', 'participants']
+      }]
     }
 
-    console.log(filters)
+    var projectList = new List('projects', options);
 
-    updateList()
+    projectList.on('updated', function(list) {
+      if (list.matchingItems.length > 0) {
+        document.getElementById("no-result").style.display = 'hidden'
+      } else {
+        document.getElementById("no-result").style.display = 'block'
+      }
+    });
+
+    const resetFilter = () => {
+      filters = {
+        category: [],
+        type: [],
+        status: [],
+        participants: []
+      }
+      updateList()
+    }
+
+    const updateList = () => {
+      projectList.filter(function(item) {
+        let category = false
+        let type = false
+        let status = false
+        let participants = false
+
+        if (filters.category.find((element) => item.values().category.includes(element)) || filters.category.length == 0) {
+          category = true
+        } else {
+          category = false
+        }
+
+        if (filters.type.find((element) => item.values().type.includes(element)) || filters.type.length == 0) {
+          type = true
+        } else {
+          type = false
+        }
+
+        if (filters.status.indexOf(item.values().status) > -1 || filters.status.length == 0) {
+          status = true
+        } else {
+          status = false
+        }
+
+        if (filters.participants.indexOf(item.values().participants) > -1 || filters.participants.length == 0) {
+          participants = true
+        } else {
+          participants = false
+        }
+
+        console.log(filters)
+        console.log(item.values())
+
+        if (category && type && status && participants) return true
+        else return false
+      })
+    }
+
+    const toggleFilter = (e) => {
+      const checked = e.target.checked
+      const value = e.target.dataset.value
+      const group = e.target.dataset.group
+
+      if (checked) {
+        filters[group].push(value)
+      } else {
+        const index = filters[group].indexOf(value);
+        if (index > -1) {
+          filters[group].splice(index, 1);
+        }
+      }
+
+      updateList()
+    }
   }
 </script>

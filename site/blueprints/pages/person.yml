@@ -60,7 +60,7 @@ columns:
           type: query
           query: site.find('projects').children
       offering_mentorship:
-        label: Offering Mentoryship
+        label: Offering Mentorship
         type: toggle
         text:
           - "no"

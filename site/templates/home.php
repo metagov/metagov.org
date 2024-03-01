@@ -33,32 +33,32 @@
   }
 
   .chaos-window-6 {
-    top: 60%;
-    left: 18%;
+    top: 45%;
+    left: 14%;
     z-index: 995;
   }
 
   .chaos-window-7 {
-    top: 65%;
+    top: 55%;
     right: 18%;
     z-index: 994;
   }
 
   .chaos-window-8 {
-    top: 80%;
+    top: 60%;
     left: 10%;
     z-index: 993;
   }
 
   .chaos-window-9 {
-    top: 85%;
+    top: 70%;
     left: 18%;
     z-index: 992;
   }
 
   .chaos-window-10 {
-    top: 90%;
-    left: 18%;
+    top: 72%;
+    right: 12%;
     z-index: 991;
   }
 </style>

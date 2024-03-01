@@ -1,4 +1,4 @@
-<div class="container lg:flex lg:gap-8 py-8">
+<div class="container lg:flex lg:gap-8 py-8 max-w-2xl mx-auto">
   <div class="mb-8 flex-shrink-0 max-w-[200px]">
     <?php
     if ($page->image()) :

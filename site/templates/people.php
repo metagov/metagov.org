@@ -35,7 +35,7 @@
           <?php foreach ($people as $person) : ?>
             <?php $index += 1 ?>
             <li>
-              <p class="text-secondary dark:text-secondary-dark mb-0"><?= $person->title() ?></p>
+              <a href="/people/<?= $person->slug() ?>" class="text-secondary dark:text-secondary-dark mb-0"><?= $person->title() ?></a>
               <p class="font-serif italic leading-5"><?= $person->affiliation() ?></p>
             </li>
           <?php endforeach ?>

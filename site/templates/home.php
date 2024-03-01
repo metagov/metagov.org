@@ -1,6 +1,6 @@
 <style>
   .chaos-window-1 {
-    top: 26%;
+    top: 24%;
     left: 0;
     right: 0;
     margin-left: auto;
@@ -21,7 +21,7 @@
   }
 
   .chaos-window-4 {
-    top: 40%;
+    top: 36%;
     right: 10%;
     z-index: 997;
   }
@@ -33,7 +33,7 @@
   }
 
   .chaos-window-6 {
-    top: 45%;
+    top: 40%;
     left: 14%;
     z-index: 995;
   }

@@ -1230,6 +1230,30 @@ article h6,
   max-width: 65ch;
 }
 
+.max-w-sm {
+  max-width: 24rem;
+}
+
+.max-w-xl {
+  max-width: 36rem;
+}
+
+.max-w-2xl {
+  max-width: 42rem;
+}
+
+.max-w-\[400px\] {
+  max-width: 400px;
+}
+
+.max-w-\[300px\] {
+  max-width: 300px;
+}
+
+.max-w-\[250px\] {
+  max-width: 250px;
+}
+
 .flex-auto {
   flex: 1 1 auto;
 }

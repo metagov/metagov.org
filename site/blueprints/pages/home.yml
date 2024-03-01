@@ -10,12 +10,27 @@ fields:
       page:
         type: pages
         multiple: false
+      window_content:
+        type: toggles
+        label: Window content
+        default: content
+        help: Window content to be shown from the page selected above.
+        options:
+          - value: content
+            text: Content/Text
+            icon: text-justify
+          - value: image
+            text: Cover image
+            icon: file-image
       title:
         type: text
+        help: Only required if page is not set.
       subheading:
         type: text
+        help: Only required if page is not set.
       description:
         type: textarea
+        help: Only required if page is not set.
       in_order:
         label: Show in ordered tab
         type: toggle

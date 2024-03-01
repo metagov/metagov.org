@@ -85,13 +85,23 @@
         <button class="draggable absolute w-[450px] h-[275px] chaos-window-<?= $index + 1 ?> prose" href="#" @click="$dispatch('toggle_modal')" hx-get="<?= $page->url() ?>" hx-replace-url="true" hx-target="#modal-content" hx-swap="innerHTML">
           <?php snippet('window', ['title' => $page->title(), 'subheading' => $page->subheading()], slots: true) ?>
 
-          <?php if ($image = $page->cover()->toFile()) : ?>
+          <?php if (($image = $page->cover()->toFile()) && ($window->window_content() == 'image')) : ?>
             <img class="w-full h-full object-cover" src="<?= $image->url() ?>" alt="<?= $image->alt()->esc() ?>">
-          <?php elseif ($content != "") : ?>
+          <?php elseif ($page->text()->isNotEmpty()) : ?>
             <div class="modal-text p-4 overflow-auto pointer-events-none">
-              <?= $content->kt() ?>
+              <?php foreach ($page->text()->toBlocks() as $block) : ?>
+                <?php if ($block->type() != 'markdown') : ?>
+                  <div id="<?= $block->id() ?>" class="block block-type-<?= $block->type() ?>">
+                    <?php snippet('blocks/' . $block->type(), [
+                      'block' => $block,
+                      'theme' => 'dark'
+                    ]) ?>
+                  </div>
+                <?php endif ?>
+              <?php endforeach ?>
             </div>
           <?php endif ?>
+
           <?php endsnippet() ?>
 
         </button>
@@ -119,15 +129,25 @@
         $page = $window->page()->toPage() ?>
         <?php if ($page) : ?>
           <button class="<?php if ($window->width_order()->toBool() === true) echo 'md:col-span-2' ?> h-[275px] cursor-pointer prose href=" @click="$dispatch('toggle_modal')" hx-get="<?= $page->url() ?>" hx-replace-url="true" hx-target="#modal-content" hx-swap="innerHTML">
-            <?php snippet('window', ['title' => $window->title(), 'subheading' => $window->subheading()], slots: true) ?>
+            <?php snippet('window', ['title' => $page->title(), 'subheading' => $page->subheading()], slots: true) ?>
 
-            <?php if ($image = $page->cover()->toFile()) : ?>
+            <?php if (($image = $page->cover()->toFile()) && ($window->window_content() == 'image')) : ?>
               <img class="w-full h-full object-cover" src="<?= $image->url() ?>" alt="<?= $image->alt()->esc() ?>">
-            <?php elseif ($content != "") : ?>
+            <?php elseif ($page->text()->isNotEmpty()) : ?>
               <div class="modal-text p-4 overflow-auto pointer-events-none">
-                <?= $content->kt() ?>
+                <?php foreach ($page->text()->toBlocks() as $block) : ?>
+                  <?php if ($block->type() != 'markdown') : ?>
+                    <div id="<?= $block->id() ?>" class="block block-type-<?= $block->type() ?>">
+                      <?php snippet('blocks/' . $block->type(), [
+                        'block' => $block,
+                        'theme' => 'dark'
+                      ]) ?>
+                    </div>
+                  <?php endif ?>
+                <?php endforeach ?>
               </div>
             <?php endif ?>
+
             <?php endsnippet() ?>
 
           </button>

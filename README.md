@@ -1,10 +1,16 @@
 ## Metagov.org
 
-The Metagovernance Project is an interdisciplinary research collective. We build standards and infrastructure for digital self-governance.
+Metagov is an interdisciplinary research collective. We build standards and infrastructure for digital self-governance.
 
 
-## Staging site
-http://164.90.138.103/
+## Site
+Live: https://metagov.org
+Staging (deprecated): http://164.90.138.103/
+
+
+## Content changes
+* Make all content changes directly to the admin of Kirby (contact Jenny or Jack for access)
+
 
 ## Dev guidelines
 * For local development, use composer: `composer start`.

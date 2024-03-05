@@ -16,7 +16,8 @@ return [
   ],
   'url' => [
     'https://metagov.org',
-    'https://www.metagov.org'
+    'https://www.metagov.org',
+    'http://localhost:8000'
   ],
   'blocks' => [
     'fieldsets' => [

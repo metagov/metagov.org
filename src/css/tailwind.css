@@ -261,3 +261,7 @@ li a {
 .active .page {
   @apply text-white dark:text-default bg-brand;
 }
+
+.object-cover {
+  object-position: top;
+}

@@ -128,7 +128,7 @@
         <?php $content = $window->description();
         $page = $window->page()->toPage() ?>
         <?php if ($page) : ?>
-          <button class="<?php if ($window->width_order()->toBool() === true) echo 'md:col-span-2' ?> h-[275px] cursor-pointer prose href=" @click="$dispatch('toggle_modal')" hx-get="<?= $page->url() ?>" hx-replace-url="true" hx-target="#modal-content" hx-swap="innerHTML">
+          <button class="<?php if ($window->width_order()->toBool() === true) echo 'md:col-span-2' ?> h-[275px] cursor-pointer prose" @click=" $dispatch('toggle_modal')" hx-get="<?= $page->url() ?>" hx-replace-url="true" hx-target="#modal-content" hx-swap="innerHTML">
             <?php snippet('window', ['title' => $page->title(), 'subheading' => $page->subheading()], slots: true) ?>
 
             <?php if (($image = $page->cover()->toFile()) && ($window->window_content() == 'image')) : ?>
@@ -152,7 +152,7 @@
 
           </button>
         <?php elseif ($content) : ?>
-          <button class="<?php if ($window->width_order()->toBool() === true) echo 'md:col-span-2' ?> h-[275px] cursor-pointer prose class=" x-data="{ open: false }" @click="open = true">
+          <button class="<?php if ($window->width_order()->toBool() === true) echo 'md:col-span-2' ?> h-[275px] cursor-pointer prose" x-data="{ open: false }" @click="open = true">
             <?php snippet('window', ['title' => $window->title(), 'subheading' => $window->subheading()], slots: true) ?>
 
             <div class="modal-text p-4 overflow-auto pointer-events-none">

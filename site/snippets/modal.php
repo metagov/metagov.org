@@ -7,7 +7,7 @@
         <?php if ($page != 'home') : ?>
           <?php snippet('pages/' . $page->template()->name(), ['page' => $page]) ?>
         <?php elseif ($content->isNotEmpty()) : ?>
-          <div class="overflow-auto prose">
+          <div class="overflow-auto prose pb-16">
             <?= $content->kt() ?>
           </div>
         <?php endif ?>

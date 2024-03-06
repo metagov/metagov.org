@@ -3,8 +3,8 @@
     <?php
     if ($page->image()) :
       $image = $page->image();
-    else :
-      $image = $site->avatar();
+    elseif (!isset($image)) :
+      $image = $page->parent()->avatars()->toFiles()->shuffle()->first();
     endif ?>
     <img class="w-full border border-brand/30 rounded mb-4" src="<?= $image->toFile()->crop(200, 200, "center")->url() ?>" srcset="<?= $image->srcset(
                                                                                                                                       [

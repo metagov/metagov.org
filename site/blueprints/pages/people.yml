@@ -1,51 +1,66 @@
 title: People
 icon: user
 
-columns:
-  main:
-    width: 1/1
+tabs:
+  content:
+    icon: document
+    columns:
+      main:
+        width: 1/1
+        fields:
+          subheading:
+            label: Subheading
+            type: text
+            validate: notEmpty
+          cover:
+            label: Cover image
+            type: files
+            multiple: false
+            layout: cards
+            size: large
+            uploads:
+              template: image
+          content:
+            type: blocks
+            label: Content
+          team:
+            type: tags
+            options:
+              type: query
+              query: site.index.filterBy("template", "person").pluck("role", ",", true)
+      left:
+        width: 2/3
+        sections:
+          listed:
+            extends: sections/people
+            label: Published
+            status: listed
+            search: true
+            sortBy: title asc
+
+      right:
+        width: 1/3
+        sections:
+          drafts:
+            extends: sections/people
+            label: Drafts
+            status: draft
+            sortBy: date desc
+
+          unlisted:
+            extends: sections/people
+            label: In Review
+            status: unlisted
+  avatars:
+    icon: user
     fields:
-      subheading:
-        label: Subheading
-        type: text
-        validate: notEmpty
-      cover:
-        label: Cover image
-        type: files
-        multiple: false
-        layout: cards
-        size: large
-        uploads:
-          template: image
-      content:
-        type: blocks
-        label: Content
-      team:
-        type: tags
-        options:
-          type: query
-          query: site.index.filterBy("template", "person").pluck("role", ",", true)
-
-  left:
-    width: 2/3
-    sections:
-      listed:
-        extends: sections/people
-        label: Published
-        status: listed
-        search: true
-        sortBy: title asc
-
-  right:
-    width: 1/3
-    sections:
-      drafts:
-        extends: sections/people
-        label: Drafts
-        status: draft
-        sortBy: date desc
-
-      unlisted:
-        extends: sections/people
-        label: In Review
-        status: unlisted
+      avatars:
+        extends: sections/image
+        label: Avatars
+        help: Default images used for when person does not provide image
+        max: 10
+        required: true
+        multiple: true
+        image:
+          ratio: 1/1
+          cover: true

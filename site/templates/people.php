@@ -67,14 +67,17 @@
   </div>
 
   <ul class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6 mx-auto list">
+    <?php $lastImage = "" ?>
     <?php foreach ($page->children()->listed() as $person) : ?>
       <li class="cursor-pointer p-2 rounded-sm hover:outline hover:outline-brand hover:bg-brand/10" x-data="{ openPerson : false }" @click="openPerson = true" data-title="<?= $person->title() ?>" data-role="<?= $person->role() ?? null ?>" data-research-interests="<?= $person->interests() ?? null ?>">
         <?php
+        do {
+          $image = $page->avatars()->toFiles()->shuffle()->first();
+        } while ($lastImage == $image);
+        $lastImage = $image;
         if ($person->image()) :
           $image = $person->image();
-        else :
-          $image = $site->avatar()->toFile();
-        endif ?>
+        endif  ?>
         <img class="w-full border border-brand/30 rounded mb-4" src="<?= $image->crop(300, 300, "center")->url() ?>" srcset="<?= $image->srcset(
                                                                                                                                 [
                                                                                                                                   '1x'  => ['width' => 300, 'height' => 300, 'crop' => 'center'],
@@ -97,7 +100,7 @@
             </a>
           <?php endforeach ?>
         </div>
-        <?php snippet('modal-person', ['page' => $person, 'title' => $person->title(), 'subheading' => '', 'small' => 'true']) ?>
+        <?php snippet('modal-person', ['page' => $person, 'title' => $person->title(), 'subheading' => '', 'small' => 'true', 'image' => $image]) ?>
       </li>
     <?php endforeach ?>
   </ul>

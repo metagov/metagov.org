@@ -5,7 +5,7 @@
       <?php snippet('window-person', ['title' => $title, 'subheading' => $subheading, 'modal' => true, 'person' => $page], slots: true) ?>
       <div class="p-4 max-h-[75vh]">
         <?php if ($page != 'home') : ?>
-          <?php snippet('pages/' . $page->template()->name(), ['page' => $page]) ?>
+          <?php snippet('pages/' . $page->template()->name(), ['page' => $page, 'image' => $image]) ?>
         <?php elseif ($content->isNotEmpty()) : ?>
           <div class="overflow-auto prose">
             <?= $content->kt() ?>

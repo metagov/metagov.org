@@ -17,7 +17,8 @@ return [
   'url' => [
     'https://metagov.org',
     'https://www.metagov.org',
-    'http://localhost:8000'
+    'http://localhost:8000',
+    'https://upright-true-goose.ngrok-free.app'
   ],
   'blocks' => [
     'fieldsets' => [

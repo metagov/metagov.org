@@ -43,7 +43,12 @@ return [
       ]
     ]
   ],
-  'thathoff.git-content.disable' => true,
+  'thathoff' => [
+    'git-content' => [
+      'commit' => false,
+      'displayErrors' => true,
+    ],
+  ],
   'routes' => [
     [
       'pattern' => 'sitemap.xml',

@@ -1,7 +1,7 @@
 <?php
 /*  $directory = $page->children()->listed()->sort(
   fn ($item) => $item->title()->split(" ")->last(),
-  SORT_DESC
+  SORT_ASC
 )  */ ?>
 
 <?php snippet('header') ?>
@@ -38,7 +38,7 @@
         </h3>
         <?php $people = $page->children()->filterBy('role', $role, ',') ?>
         <ul class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-2 gap-4 mb-8">
-          <?php foreach ($people as $person) : ?>
+          <?php foreach ($people->sort(fn ($item) => $item->title(), SORT_ASC) as $person) : ?>
             <?php $index += 1 ?>
             <li>
               <a href="/people/<?= $person->slug() ?>" class="text-secondary dark:text-secondary-dark mb-0"><?= $person->title() ?></a>

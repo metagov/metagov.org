@@ -31,6 +31,7 @@ return [
           'table',
           'markdown',
           'line',
+          'children'
         ]
       ],
       'media' => [

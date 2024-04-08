@@ -1,0 +1,12 @@
+name: Children
+icon: menu
+preview: fields # required
+wysiwyg: true # recommended
+fields:
+  inline:
+    label: Inline
+    type: toggle
+    default: true
+    text:
+      - "no"
+      - "yes"

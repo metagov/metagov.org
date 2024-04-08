@@ -1054,6 +1054,16 @@ iframe {
   margin-bottom: 0.25rem;
 }
 
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
 .mb-0 {
   margin-bottom: 0px;
 }
@@ -1090,6 +1100,10 @@ iframe {
   margin-top: -5.5rem;
 }
 
+.mb-3 {
+  margin-bottom: 0.75rem;
+}
+
 .line-clamp-1 {
   overflow: hidden;
   display: -webkit-box;
@@ -1103,6 +1117,10 @@ iframe {
 
 .inline-block {
   display: inline-block;
+}
+
+.inline {
+  display: inline;
 }
 
 .flex {
@@ -1359,6 +1377,12 @@ iframe {
   margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
 }
 
+.space-y-8 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(2rem * var(--tw-space-y-reverse));
+}
+
 .overflow-auto {
   overflow: auto;
 }
@@ -1399,6 +1423,11 @@ iframe {
 .border-secondary {
   --tw-border-opacity: 1;
   border-color: rgb(0 128 96 / var(--tw-border-opacity));
+}
+
+.border-secondary-dark {
+  --tw-border-opacity: 1;
+  border-color: rgb(70 211 202 / var(--tw-border-opacity));
 }
 
 .bg-bg {
@@ -1495,6 +1524,11 @@ iframe {
 .py-\[30px\] {
   padding-top: 30px;
   padding-bottom: 30px;
+}
+
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
 .pb-16 {
@@ -1642,6 +1676,12 @@ iframe {
   transition-duration: 150ms;
 }
 
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
 .delay-150 {
   transition-delay: 150ms;
 }
@@ -1783,12 +1823,31 @@ li a {
   color: rgb(1 27 26 / var(--tw-text-opacity));
 }
 
+.open\:mt-2[open] {
+  margin-top: 0.5rem;
+}
+
+.open\:px-3[open] {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
 .hover\:bg-brand\/10:hover {
   background-color: rgb(0 204 153 / 0.1);
 }
 
 .hover\:bg-brand\/15:hover {
   background-color: rgb(0 204 153 / 0.15);
+}
+
+.hover\:bg-secondary:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 128 96 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-secondary-dark:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(70 211 202 / var(--tw-bg-opacity));
 }
 
 .hover\:opacity-100:hover {
@@ -1807,6 +1866,14 @@ li a {
 
 .hover\:outline-brand:hover {
   outline-color: #00CC99;
+}
+
+.group[open] .group-open\:mt-2 {
+  margin-top: 0.5rem;
+}
+
+.group[open] .group-open\:mb-2 {
+  margin-bottom: 0.5rem;
 }
 
 .peer:checked ~ .peer-checked\:visible {
@@ -1851,9 +1918,9 @@ li a {
   color: rgb(70 211 202 / var(--tw-text-opacity));
 }
 
-:is(.dark .dark\:invert) {
-  --tw-invert: invert(100%);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+:is(.dark .dark\:hover\:bg-secondary:hover) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 128 96 / var(--tw-bg-opacity));
 }
 
 @media (min-width: 640px) {

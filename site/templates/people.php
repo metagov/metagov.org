@@ -1,3 +1,9 @@
+<?php
+/*  $directory = $page->children()->listed()->sort(
+  fn ($item) => $item->title()->split(" ")->last(),
+  SORT_DESC
+)  */ ?>
+
 <?php snippet('header') ?>
 <div class="container">
   <div class="mb-8">

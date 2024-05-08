@@ -108,9 +108,9 @@ columns:
           research_directors:
             label: Research Directors
             type: pages
-            query: site.find('people').children.filterBy('role','researchDirector')
+            query: site.find('people').children
           members:
-            label: Members
+            label: Participants
             type: pages
             query: site.find('people').children
           contact:

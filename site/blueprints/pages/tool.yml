@@ -1,0 +1,84 @@
+title: Tool
+type: pages
+icon: 🛠
+parent: kirby.page("gallery")
+
+columns:
+  main:
+    width: 2/3
+    fields:
+      subheading:
+        label: Subheading
+        type: text
+        validate: notEmpty
+        required: true
+      cover:
+        label: Cover image
+        type: files
+        multiple: false
+        layout: cards
+        size: large
+        uploads:
+          template: image
+        validate: notEmpty
+        required: true
+      website:
+        label: Website
+        description: Link to project site
+        type: url
+      inputs:
+        label: Inputs
+        type: text
+        description: Inputs from the wider deliberative process
+      outputs:
+        label: Outputs
+        type: text
+        description: Outputs to the wider deliberative process
+
+  sidebar:
+    width: 1/3
+    sections:
+      meta:
+        type: fields
+        fields:
+          stage:
+            label: Stage
+            type: tags
+            options:
+              - "Framing"
+              - "Elicitation"
+              - "Learning"
+              - "Deliberation"
+              - "Decision"
+              - "Actuation"
+              - "Reflection"
+
+          function:
+            label: Function
+            type: tags
+            options:
+              - "Debate"
+              - "Merging"
+              - "Permissions"
+              - "Share"
+              - "Paraphrase"
+              - "Steelman"
+              - "Decide"
+              - "Fact Checking"
+              - "Summary"
+
+          license:
+            label: License
+            type: tags
+            options:
+              - "MIT"
+              - "GPL"
+              - "AGPL"
+              - "Proprietary"
+
+          infrastructure:
+            label: Infrastructure dependencies
+            description: Systems required to run the tool (e.g. chatGPT)
+            type: text
+
+

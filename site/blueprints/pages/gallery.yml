@@ -1,0 +1,24 @@
+title: Gallery
+icon: 📸
+
+columns:
+  left:
+    width: 1/3
+    fields:
+
+
+  main:
+    width: 2/3
+    sections:
+      listed:
+        extends: sections/tools
+        label: Published
+        status: listed
+      drafts:
+        extends: sections/tools
+        label: Drafts
+        status: draft
+      unlisted:
+        extends: sections/tools
+        label: In Review
+        status: unlisted

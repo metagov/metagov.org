@@ -12,7 +12,6 @@
             [
               'filters' => [
                 'Framing',
-                'Elicition',
                 'Elicitation',
                 'Learning',
                 'Deliberation',

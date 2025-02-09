@@ -1132,6 +1132,10 @@ iframe {
   height: 2rem;
 }
 
+.h-80 {
+  height: 20rem;
+}
+
 .h-\[275px\] {
   height: 275px;
 }
@@ -1352,6 +1356,10 @@ iframe {
   justify-content: space-between;
 }
 
+.justify-items-center {
+  justify-items: center;
+}
+
 .gap-2 {
   gap: 0.5rem;
 }
@@ -1384,6 +1392,10 @@ iframe {
 
 .overflow-auto {
   overflow: auto;
+}
+
+.overflow-hidden {
+  overflow: hidden;
 }
 
 .rounded {
@@ -1453,6 +1465,11 @@ iframe {
 
 .fill-brand\/30 {
   fill: rgb(0 204 153 / 0.3);
+}
+
+.object-contain {
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .object-cover {
@@ -1927,6 +1944,10 @@ li a {
 
   .md\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .md\:flex-row {
+    flex-direction: row;
   }
 
   .md\:justify-evenly {

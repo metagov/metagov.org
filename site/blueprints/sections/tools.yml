@@ -1,0 +1,8 @@
+type: pages
+label: Tools
+parent: kirby.page("gallery")
+info: "{{ page.date.toDate('d.m.Y') }}"
+template: tool
+empty: No tools yet
+sortyBy: title asc
+search: true

@@ -34,7 +34,8 @@ columns:
         label: Outputs
         type: text
         description: Outputs to the wider deliberative process
-
+      description:
+        type: textarea
   sidebar:
     width: 1/3
     sections:
@@ -80,5 +81,3 @@ columns:
             label: Infrastructure dependencies
             description: Systems required to run the tool (e.g. chatGPT)
             type: text
-
-

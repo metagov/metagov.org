@@ -8,17 +8,17 @@
     </div>
     <!-- End Nav -->
 
+    <?php if ($page->cover()->isNotEmpty()) : ?>
+      <img class="mb-8 border border-brand shadow-window hover:shadow-windowhover transition-[opacity,box-shadow] max-w-xs" src="<?= $page->cover()->toFile()->url() ?>" alt="<?= $page->cover()->toFile()->alt()->esc() ?>">
+    <?php endif ?>
+
     <div class="mb-2 flex gap-4 items-center">
       <h1 class="text-xxl full-width"><?= $page->title()->esc() ?></h1>
     </div>
-      <h2 class="text-large">
-        <?= $page->subheading()->esc() ?>
-      </h2>
+    <h2 class="text-large">
+      <?= $page->subheading()->esc() ?>
+    </h2>
   </div>
-
-  <?php if ($page->cover()->isNotEmpty()) : ?>
-    <img class="mb-8 border border-brand shadow-window hover:shadow-windowhover transition-[opacity,box-shadow]" src="<?= $page->cover()->toFile()->url() ?>" alt="<?= $page->cover()->toFile()->alt()->esc() ?>">
-  <?php endif ?>
 
   <article>
 
@@ -36,7 +36,7 @@
         <div class="space-y-1">
           <h5 class="mb-2">Function</h5>
           <?php foreach ($page->function()->split() as $function) : ?>
-            <span class="tag"><?= $function?></span>
+            <span class="tag"><?= $function ?></span>
           <?php endforeach ?>
         </div>
       <?php endif ?>
@@ -74,13 +74,22 @@
       <?php endif ?>
       <?php if ($page->inputs()->isNotEmpty()) : ?>
         <div>
-            <h5 class="mb-2">Outputs</h5>
-            <span><?= $page->outputs()->esc() ?></span>
+          <h5 class="mb-2">Outputs</h5>
+          <span><?= $page->outputs()->esc() ?></span>
         </div>
       <?php endif ?>
     </div>
 
+    <!-- Tool description -->
+    <?php if ($page->description()->isNotEmpty()) : ?>
+      <div class="mb-8">
+        <h5>DESCRIPTION</h5>
+        <div class="prose">
+          <?= $page->description()->kt() ?>
+        </div>
+      </div>
+    <?php endif ?>
+
   </article>
 
 </div>
-

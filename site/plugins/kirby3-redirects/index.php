@@ -1,19 +1,51 @@
 <?php
 
+use Kirby\Content\Field;
+use Kirby\Http\Response;
 use Kirby\Http\Route;
 
-@include_once __DIR__ . '/vendor/autoload.php';
+@include_once __DIR__.'/vendor/autoload.php';
 
 Kirby::plugin('bnomei/redirects', [
     'options' => [
         'code' => 301,
         'querystring' => true,
-        'map' => function () {
-            return kirby()->site()->redirects();
+        'only-empty-results' => false,
+        'map' => function (): array|Closure|Field {
+            return kirby()->site()->redirects(); //@phpstan-ignore-line
         }, // array, closure with structure-field or array
-        'block' => [
+        'shield' => [
             'enabled' => true,
             // catch most basic attacks early
+            'generic' => [
+                ['fromuri' => '.env', 'touri' => '', 'code' => 404],
+                ['fromuri' => '.aws/credentials', 'touri' => '', 'code' => 404],
+                ['fromuri' => '.vscode/sftp.json', 'touri' => '', 'code' => 404],
+                ['fromuri' => '.git', 'touri' => '', 'code' => 404],
+                ['fromuri' => '.gitignore', 'touri' => '', 'code' => 404],
+                ['fromuri' => '.gitattributes', 'touri' => '', 'code' => 404],
+                ['fromuri' => 'id_rsa', 'touri' => '', 'code' => 404],
+                ['fromuri' => 'id_rsa.pub', 'touri' => '', 'code' => 404],
+                ['fromuri' => 'known_hosts', 'touri' => '', 'code' => 404],
+                ['fromuri' => '.ssh\/.*', 'touri' => '', 'code' => 404],
+                ['fromuri' => 'docker-compose.yml', 'touri' => '', 'code' => 404],
+                ['fromuri' => 'Dockerfile', 'touri' => '', 'code' => 404],
+                ['fromuri' => 'Procfile', 'touri' => '', 'code' => 404],
+                ['fromuri' => 'config.php', 'touri' => '', 'code' => 404],
+                ['fromuri' => '.htaccess', 'touri' => '', 'code' => 404],
+                ['fromuri' => 'web.config', 'touri' => '', 'code' => 404],
+                ['fromuri' => 'settings.json', 'touri' => '', 'code' => 404],
+                ['fromuri' => 'composer.json', 'touri' => '', 'code' => 404],
+                ['fromuri' => 'composer.lock', 'touri' => '', 'code' => 404],
+                ['fromuri' => 'package.json', 'touri' => '', 'code' => 404],
+                ['fromuri' => 'package-lock.json', 'touri' => '', 'code' => 404],
+                ['fromuri' => 'pnpm-lock.yaml', 'touri' => '', 'code' => 404],
+                ['fromuri' => 'yarn.lock', 'touri' => '', 'code' => 404],
+                ['fromuri' => 'bun.lockb', 'touri' => '', 'code' => 404],
+                ['fromuri' => 'Thumbs.db', 'touri' => '', 'code' => 404],
+                ['fromuri' => 'desktop.ini', 'touri' => '', 'code' => 404],
+                ['fromuri' => '.DS_Store', 'touri' => '', 'code' => 404],
+            ],
             'wordpress' => [
                 ['fromuri' => 'wp-login.php', 'touri' => '', 'code' => 404],
                 ['fromuri' => 'wp-admin', 'touri' => '', 'code' => 404],
@@ -72,38 +104,48 @@ Kirby::plugin('bnomei/redirects', [
     ],
     'blueprints' => [
         // 'plugin-redirects' => __DIR__ . '/blueprints/sections/redirects.yml',
-        'plugin-redirects' => require_once __DIR__ . '/blueprints/sections/redirects.php',
-        'plugin-redirects3xx' => __DIR__ . '/blueprints/sections/redirects3xx.yml',
+        'plugin-redirects' => require_once __DIR__.'/blueprints/sections/redirects.php',
+        'plugin-redirects3xx' => __DIR__.'/blueprints/sections/redirects3xx.yml',
     ],
     'hooks' => [
         'route:after' => function (Route $route, string $path, string $method, $result, bool $final) {
-            if ($final === true && empty($result) === true) {
+            $allowed = true;
+            if (option('bnomei.redirects.only-empty-results')) {
+                $allowed = empty($result) === true;
+            }
+            if ($final === true && $allowed) {
                 $isPanel = str_contains(kirby()->request()->url()->toString(), kirby()->urls()->panel());
                 $isApi = str_contains(kirby()->request()->url()->toString(), kirby()->urls()->api());
                 $isMedia = str_contains(kirby()->request()->url()->toString(), kirby()->urls()->media());
-                if (!$isPanel && !$isApi && !$isMedia) {
+                if (! $isPanel && ! $isApi && ! $isMedia) {
                     \Bnomei\Redirects::singleton()->redirect();
                 }
             }
-        },
-        'page.update:after' => function (Kirby\Cms\Page $newPage, Kirby\Cms\Page $oldPage) {
-            $redirects = \Bnomei\Redirects::singleton();
-            if ($redirects->getParent() && $redirects->getParent()->id() === $newPage->id()) {
-                $redirects->flush();
+            if ($final && empty($result)) {
+                kirby()->trigger('404:before', compact('route', 'path', 'method'));
             }
         },
-        'site.update:after' => function (Kirby\Cms\Site $newSite, Kirby\Cms\Site $oldSite) {
-            $redirects = \Bnomei\Redirects::singleton();
-            if ($redirects->getParent() && $redirects->getParent()::class === $newSite::class) {
-                $redirects->flush();
+        'site.*:after' => function ($event, $site) {
+            if ($event->action() !== 'render') {
+                \Bnomei\Redirects::flush();
+            }
+        },
+        'page.*:after' => function ($event, $page) {
+            if ($event->action() !== 'render') {
+                \Bnomei\Redirects::flush();
+            }
+        },
+        'file.*:after' => function ($event, $file) {
+            if ($event->action() !== 'render') {
+                \Bnomei\Redirects::flush();
             }
         },
     ],
     'siteMethods' => [
-        'appendRedirects' => function ($data) {
+        'appendRedirects' => function (array $data) {
             return \Bnomei\Redirects::singleton()->append($data);
         },
-        'removeRedirects' => function ($data) {
+        'removeRedirects' => function (array $data) {
             return \Bnomei\Redirects::singleton()->remove($data);
         },
     ],
@@ -112,8 +154,7 @@ Kirby::plugin('bnomei/redirects', [
             'pattern' => 'plugin-redirects/codes',
             'method' => 'GET',
             'action' => function () {
-                $codes = \Bnomei\Redirects::codes();
-                return \Kirby\Http\Response::json(['codes' => $codes]);
+                return Response::json(['codes' => \Bnomei\Redirects::codes()]);
             },
         ],
     ],

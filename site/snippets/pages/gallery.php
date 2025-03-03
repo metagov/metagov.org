@@ -27,13 +27,13 @@
   </div>
 
 
-  <ul class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 list">
+  <ul class="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 list">
     <?php foreach ($page->children()->sortBy('title', 'asc') as $project) : ?>
       <li class="list-none" data-title="<?= $project->title() ?>" data-stage="<?= $project->stage() ?>">
         <a href="<?= $project->url() ?>">
           <?php snippet('window', ['title' => $project->title(), 'subheading' => $project->subheading()], slots: true) ?>
           <?php if ($image = $project->cover()->toFile()) : ?>
-            <div class="flex grow items-center justify-items-center h-full p-2 overflow-hidden">
+            <div class="flex grow items-center justify-items-center h-full p-8 bg-white overflow-hidden">
               <img class="w-full" src="<?= $image->url() ?>" alt="<?= $image->alt()->esc() ?>" />
             </div>
           <?php endif ?>

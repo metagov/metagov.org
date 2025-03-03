@@ -2,6 +2,16 @@
   <div class="mb-12">
     <h1 class="text-xl font-black text-brand mb-2">Deliberative Tool Gallery</h1>
   </div>
+  <div class="mb-8 prose max-w-prose">
+    <?php foreach ($page->content()->content()->toBlocks() as $block) : ?>
+      <div id="<?= $block->id() ?>" class="block block-type-<?= $block->type() ?>">
+        <?php snippet('blocks/' . $block->type(), [
+          'block' => $block,
+          'theme' => 'dark'
+        ]) ?>
+      </div>
+    <?php endforeach ?>
+  </div>
   <div class="mb-12 flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-4">
     <span>FILTERS:</span>
     <input class="search w-full md:w-1/2 lg:w-auto" placeholder="Search" />

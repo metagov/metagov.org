@@ -1,0 +1,32 @@
+title: Director
+description: Research Directors can only edit the pages they're assigned to
+
+permissions:
+  access:
+    account: true
+    panel: true
+    settings: false
+    site: true
+    system: false
+    languages: false
+    users: false
+    home: "account"
+  user:
+    *: false
+    changeEmail: true
+    changeName: true
+    changePassword: true
+
+fields:
+  personPage:
+    label: 'Link to person page'
+    type: pages
+    multiple: false
+    options: query
+    query: site.find('people').children
+  canaccess: # using the Bouncer plugin, select pages user should get limited to
+    label: 'The user will only be able to access:'
+    type: pages
+    multiple: true
+    options: query
+    query: collection('director-access')

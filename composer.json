@@ -9,12 +9,13 @@
   ],
   "homepage": "https://metagov.org/",
   "require": {
-    "php": ">=8.0.0 <8.3.0",
+    "php": ">=8.0.0 <8.4.0",
     "getkirby/cms": "^4.0.0",
     "ragi96/table-field": "^1.1",
     "jg/kirby-fields-block": "^1.2",
     "thathoff/kirby-git-content": "^5.1",
-    "bnomei/kirby3-redirects": "*"
+    "bnomei/kirby3-redirects": "*",
+    "sylvainjule/bouncer": "^1.1"
   },
   "config": {
     "allow-plugins": {

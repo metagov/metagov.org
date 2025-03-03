@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bfa3a9b19a57e6a0939af58a7d519475",
+    "content-hash": "4128cd0bc4e6c2cdbfdfb8fc2943f515",
     "packages": [
         {
             "name": "bnomei/kirby3-redirects",
@@ -942,6 +942,44 @@
             "time": "2022-08-16T07:19:30+00:00"
         },
         {
+            "name": "sylvainjule/bouncer",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sylvainjule/kirby-bouncer.git",
+                "reference": "d62d9a30e8543f1d9af0f43dbc21e5d09be928b0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sylvainjule/kirby-bouncer/zipball/d62d9a30e8543f1d9af0f43dbc21e5d09be928b0",
+                "reference": "d62d9a30e8543f1d9af0f43dbc21e5d09be928b0",
+                "shasum": ""
+            },
+            "require": {
+                "getkirby/composer-installer": "^1.1"
+            },
+            "type": "kirby-plugin",
+            "extra": {
+                "installer-name": "bouncer"
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sylvain Julé",
+                    "email": "contact@sylvain-jule.fr"
+                }
+            ],
+            "description": "Restrict access of a user role to a specific page (and its children) in the panel.",
+            "support": {
+                "issues": "https://github.com/sylvainjule/kirby-bouncer/issues",
+                "source": "https://github.com/sylvainjule/kirby-bouncer/tree/1.1.0"
+            },
+            "time": "2024-03-07T10:05:58+00:00"
+        },
+        {
             "name": "symfony/deprecation-contracts",
             "version": "v3.5.1",
             "source": {
@@ -1463,7 +1501,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=8.0.0 <8.3.0"
+        "php": ">=8.0.0 <8.4.0"
     },
     "platform-dev": [],
     "plugin-api-version": "2.6.0"

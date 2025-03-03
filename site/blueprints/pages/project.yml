@@ -53,6 +53,9 @@ columns:
   sidebar:
     width: 1/3
     sections:
+      ## add in to allow switching projects
+      bouncernav:
+        type: bouncernav
       meta:
         type: fields
         fields:
@@ -107,8 +110,8 @@ columns:
               - "Technical Standard"
           research_directors:
             label: Research Directors
-            type: pages
-            query: site.find('people').children
+            type: users
+            query: kirby.users.filterBy("role", "director")
           members:
             label: Contributors
             type: pages

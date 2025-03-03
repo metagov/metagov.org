@@ -1,5 +1,5 @@
 <?php snippet('header') ?>
-<div class="container">
+<div class="container max-w-[1088px] py-8">
   <div class="mb-8">
     <h1 class="text-xxl"><?= $page->title()->esc() ?></h1>
     <h2 class="text-large font-normal">
@@ -17,44 +17,34 @@
       </div>
     <?php endforeach ?>
   </div>
-  <div class="mb-8 lg:grid lg:grid-cols-3 xl:grid-cols-3 grid-flow-row gap-4">
-    <?php // splitting team into 3 equal columns by checking index against size of team.
-    $index = 0;
-    $teamSplit = 1;
-    $splitEnd = true;
-    ?>
-    <?php foreach ($page->team()->split() as $role) : ?>
-      <?php if ($splitEnd) : ?>
-        <div>
-        <?php endif ?>
-        <h3 class="text-medium mb-4">
-          <?= $role ?>
-        </h3>
-        <?php $people = $page->children()->filterBy('role', $role, ',') ?>
-        <ul class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-2 gap-4 mb-8">
-          <?php foreach ($people as $person) : ?>
-            <?php $index += 1 ?>
-            <li>
-              <a href="/people/<?= $person->slug() ?>" class="text-secondary dark:text-secondary-dark mb-0"><?= $person->title() ?></a>
-              <p class="font-serif italic leading-5"><?= $person->affiliation() ?></p>
-            </li>
-          <?php endforeach ?>
-        </ul>
-        <?php
-        if ($index > ($teamSize / 3) * $teamSplit) :
-          $splitEnd = true;
-          $teamSplit += 1;
-        else :
-          $splitEnd = false;
-        endif;
-        ?>
-        <?php if ($splitEnd) : ?>
+  
+  <div class="mb-8">
+    <div class="flex flex-wrap -mx-4">
+      <?php foreach ($page->team()->split() as $role) : ?>
+        <div class="w-full md:w-1/2 px-4 mb-8">
+          <div class="prose">
+            <h4><?= $role ?></h4>
+          </div>
+
+          <?php $people = $page->children()->filterBy('role', $role, ',') ?>
+          <ul class="grid grid-cols-1 gap-2">
+            <?php foreach ($people as $person) : ?>
+              <li>
+                <p class="mb-0">
+                  <a href="/people/<?= $person->slug() ?>" class="text-secondary dark:text-secondary-dark mb-0"><?= $person->title() ?></a>
+                  <span class="text-tag italic leading-4"><?= $person->affiliation() ?></span>
+                </p>
+              </li>
+            <?php endforeach ?>
+          </ul>
         </div>
-      <?php endif ?>
-    <?php endforeach ?>
+      <?php endforeach ?>
+    </div>
   </div>
-</div>
+
+
 <hr class="border-secondary dark:border-secondary-dark" />
+
 <section id="people">
   <div class="mb-8 lg:flex justify-between items-center">
     <h3 class="text-medium mb-4">Directory</h3>
@@ -87,11 +77,13 @@
                                                                                                                               ) ?>" alt="<?= $image->alt()->esc() ?>" width="<?= $image->resize(154)->width() ?>" height="<?= $image->resize(235)->height() ?>">
 
         <p class="text-small text-secondary dark:text-secondary-dark mb-1"><?= $person->title() ?></p>
-        <p class="mb-1 italic font-serif line-clamp-1 leading-4"><?= $person->affiliation() ?></p>
+        <p class="text-tag italic mb-2"><?= $person->affiliation() ?></p>
+        
         <?php if ($person->role()->isNotEmpty()) : ?>
-          <span class="button inline-block mb-1"><?= $person->role()->split()[0] ?></span>
+          <span class="button inline-block mb-2"><?= $person->role()->split()[0] ?></span>
         <?php endif ?>
-        <div>
+
+        <p class="text-tag">
           <?php
           $links = $person->links()->toStructure();
           foreach ($links as $link) : ?>
@@ -99,18 +91,23 @@
               <?= $link->content()->text() ?>
             </a>
           <?php endforeach ?>
-        </div>
+        </p>
+
         <?php snippet('modal-person', ['page' => $person, 'title' => $person->title(), 'subheading' => '', 'small' => 'true', 'image' => $image]) ?>
       </li>
     <?php endforeach ?>
   </ul>
+
   <div id="no-result" class="hidden">
-    <p>No people found</p>
+    <p class="text-center py-8">No people found</p>
   </div>
+  
   <ul class="pagination justify-center"></ul>
 
 </section>
 </div>
+
+
 <?php snippet('footer') ?>
 
 <script>
@@ -131,9 +128,9 @@
 
   peopleList.on('updated', function(list) {
     if (list.matchingItems.length > 0) {
-      document.getElementById("no-result").style.display = 'hidden'
+      document.getElementById("no-result").classList.add('hidden');
     } else {
-      document.getElementById("no-result").style.display = 'block'
+      document.getElementById("no-result").classList.remove('hidden');
     }
   });
 

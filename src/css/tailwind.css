@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -59,11 +61,11 @@ main {
 
   article p,
   .prose p {
-    @apply font-serif text-medium mb-8;
+    @apply font-sans text-medium mb-8 font-light;
   }
   article li,
   .prose li {
-    @apply font-serif text-medium mb-2;
+    @apply font-sans text-medium mb-2 font-light;
   }
 
   article a,
@@ -72,13 +74,15 @@ main {
   div.embedded_schedule a {
     @apply underline underline-offset-4 text-default hover:text-brand dark:text-white dark:hover:text-brand;
   }
+  
 
   table th {
     @apply p-2 border-b border-secondary text-left;
   }
 
   table td {
-    @apply p-2 border-b border-secondary/20 font-serif;
+    @apply p-2 border-b border-secondary/20 font-sans;
+    min-width: 72px;
   }
 
   .button {
@@ -120,44 +124,38 @@ main {
 
   article h1,
   .prose h1 {
-    @apply font-sans text-xxl;
-    font-weight: 600;
+    @apply font-sans text-xxl font-normal;
     margin: 1rem 0 2rem;
   }
 
   article h2,
   .prose h2 {
-    @apply font-sans text-xl;
-    font-weight: 600;
+    @apply font-sans text-xl font-normal;
     margin: 2rem 0 1rem;
   }
 
   article h3,
   .prose h3 {
-    @apply font-sans text-large;
-    font-weight: 600;
+    @apply font-sans text-large font-medium;
     margin: 1rem 0;
   }
 
   article h4,
   .prose h4 {
-    @apply font-sans text-medium;
-    font-weight: 600;
+    @apply font-sans text-medium font-semibold;
     margin: 1rem 0;
   }
 
   article h5,
   .prose h5 {
-    @apply font-sans text-small;
-    font-weight: 600;
+    @apply font-sans text-small font-semibold;
     margin: 0.5rem 0;
   }
 
   article h6,
   .prose h6,
   .h6 {
-    @apply font-mono text-xs;
-    font-weight: 500;
+    @apply font-mono text-xs font-semibold;
     margin: 1rem 0;
   }
 
@@ -241,18 +239,21 @@ hr {
 }
 
 .prose li {
-  @apply font-serif text-left list-disc mb-2 ml-4;
+  @apply font-sans text-left list-disc mb-2 ml-4;
 }
 li a {
   @apply no-underline;
+}
+li a:hover {
+  @apply underline;
 }
 
 .pagination {
   @apply flex gap-1 my-4;
 }
-.pagination a {
+/* .pagination a {
   @apply no-underline;
-}
+} */
 
 .page {
   @apply hover:bg-brand/15 px-2 py-1 text-brand font-sans text-small border-brand border rounded-sm;

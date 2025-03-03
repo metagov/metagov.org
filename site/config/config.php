@@ -68,4 +68,11 @@ return [
     ]
   ],
   'sitemap.ignore' => ['error'],
+  // tell the plugin which `role => fieldname` associations to use
+  'sylvainjule.bouncer.list' => [
+    'director' => [ // matches your blueprint filename without .yml
+        'fieldname' => 'canaccess',
+        'nav' => true
+    ]
+]
 ];

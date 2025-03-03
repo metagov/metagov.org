@@ -13,7 +13,7 @@ tabs:
               - home
               - projects
               - people
-              - deliverative-tool-gallery
+              - deliberative-tool-gallery
       - width: 1/2
         sections:
           projects: sections/projects

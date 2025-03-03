@@ -9,7 +9,7 @@
     <!-- End Nav -->
 
     <?php if ($page->cover()->isNotEmpty()) : ?>
-      <img class="mb-8 border border-brand shadow-window hover:shadow-windowhover transition-[opacity,box-shadow] max-w-xs" src="<?= $page->cover()->toFile()->url() ?>" alt="<?= $page->cover()->toFile()->alt()->esc() ?>">
+      <img class="mb-8 p-8 bg-white border border-brand shadow-window hover:shadow-windowhover transition-[opacity,box-shadow] max-w-xs" src="<?= $page->cover()->toFile()->url() ?>" alt="<?= $page->cover()->toFile()->alt()->esc() ?>">
     <?php endif ?>
 
     <div class="mb-2 flex gap-4 items-center">

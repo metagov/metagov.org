@@ -1,6 +1,6 @@
 <div id="projects" class="container max-w-[1088px] py-8">
   <div class="mb-12">
-    <h1 class="text-xl font-black text-brand mb-2">Deliberative Tool Gallery</h1>
+    <h1 class="text-xl mb-2">Deliberative Tool Gallery</h1>
   </div>
   <div class="mb-8 prose max-w-prose">
     <?php foreach ($page->content()->content()->toBlocks() as $block) : ?>

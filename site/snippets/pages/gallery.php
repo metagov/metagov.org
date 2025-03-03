@@ -1,56 +1,51 @@
 <div id="projects" class="container max-w-[1088px] py-8">
   <div class="mb-12">
-  <h1 class="text-xl font-black text-brand mb-2">Deliberative Tool Gallery</h1>
+    <h1 class="text-xl font-black text-brand mb-2">Deliberative Tool Gallery</h1>
   </div>
-  <div class="flex flex-col md:flex-row space-x-4">
-    <div class="flex-none w-64 divide-y">
-      <div>
-        <h4 class="font-black text-brand pb-2">Stage</h4>
-        <ul class="indent-2">
-          <?php snippet(
-            'blocks/checkboxfilter',
-            [
-              'filters' => [
-                'Framing',
-                'Elicitation',
-                'Learning',
-                'Deliberation',
-                'Decision',
-                'Actuation',
-                'Reflection'
-              ],
-              'group' => 'stage',
-              'label' => 'Stage'
-            ]) 
-          ?>
-        </ul>
-      </div>
-      <div>
-        <input class="search w-full my-2" placeholder="Search" />
-      </div>
+  <div class="mb-12 flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-4">
+    <span>FILTERS:</span>
+    <input class="search w-full md:w-1/2 lg:w-auto" placeholder="Search" />
+    <ul class="indent-2">
+      <?php snippet(
+        'blocks/filter',
+        [
+          'filters' => [
+            'Framing',
+            'Elicitation',
+            'Learning',
+            'Deliberation',
+            'Decision',
+            'Actuation',
+            'Reflection'
+          ],
+          'group' => 'stage',
+          'label' => 'Stage'
+        ]
+      )
+      ?>
+    </ul>
+  </div>
 
-    </div>
-    <div class="flex-1">
-      <ul class="grid lg:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 list">
-        <?php foreach ($page->children()->sortBy('title', 'asc') as $project) : ?>
-          <li class="list-none w-64 h-80" data-title="<?= $project->title() ?>" data-status="<?= $project->projectStatus() ?? null ?>" data-type="<?= $project->type() ?? null ?>" data-category="<?= $project->category() ?? null ?>" data-stage="<?= $project->stage() ?? null ?>" data-participants="<?= ($project->seekingParticipants()->toBool()) ? 'Yes' : 'No' ?>">
-            <a href="<?= $project->url() ?>">
-              <?php snippet('window', ['title' => $project->title(), 'subheading' => $project->subheading()], slots: true) ?>
-              <?php if ($image = $project->cover()->toFile()) : ?>
-                <div class="flex grow items-center justify-items-center h-full p-2 overflow-hidden">
-                  <img class="object-contain" src="<?= $image->url() ?>"  alt="<?= $image->alt()->esc() ?>" />
-                </div>
-              <?php endif ?>
-              <?php endsnippet() ?>
-            </a>
-          </li>
 
-        <?php endforeach ?>
-      </ul>
-      <div id="no-result" class="hidden">
-        <p>No projects found</p>
-      </div>
-    </div>
+  <ul class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 list">
+    <?php foreach ($page->children()->sortBy('title', 'asc') as $project) : ?>
+      <li class="list-none" data-title="<?= $project->title() ?>" data-stage="<?= $project->stage() ?>">
+        <a href="<?= $project->url() ?>">
+          <?php snippet('window', ['title' => $project->title(), 'subheading' => $project->subheading()], slots: true) ?>
+          <?php if ($image = $project->cover()->toFile()) : ?>
+            <div class="flex grow items-center justify-items-center h-full p-2 overflow-hidden">
+              <img class="w-full" src="<?= $image->url() ?>" alt="<?= $image->alt()->esc() ?>" />
+            </div>
+          <?php endif ?>
+          <?php endsnippet() ?>
+        </a>
+      </li>
+
+    <?php endforeach ?>
+  </ul>
+
+  <div id="no-result" class="hidden">
+    <p>No tools found</p>
   </div>
 </div>
 
@@ -62,7 +57,7 @@
 
   var options = {
     valueNames: [{
-      data: ['stage']
+      data: ['title', 'stage']
     }]
   }
 

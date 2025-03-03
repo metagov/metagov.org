@@ -6,19 +6,18 @@ columns:
     width: 1/3
     fields:
 
-
   main:
     width: 2/3
     sections:
       listed:
-        extends: sections/tools
+        extends: sections/deliberative-tools
         label: Published
         status: listed
       drafts:
-        extends: sections/tools
+        extends: sections/deliberative-tools
         label: Drafts
         status: draft
       unlisted:
-        extends: sections/tools
+        extends: sections/deliberative-tools
         label: In Review
         status: unlisted

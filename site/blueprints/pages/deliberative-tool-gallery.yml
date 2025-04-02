@@ -1,0 +1,38 @@
+title: Gallery
+icon: 📸
+
+columns:
+  left:
+    width: 1/3
+    fields:
+      subheading:
+        label: Subheading
+        type: text
+        validate: notEmpty
+      cover:
+        label: Cover image
+        type: files
+        multiple: false
+        layout: cards
+        size: large
+        uploads:
+          template: image
+      content:
+        type: blocks
+        label: Content
+
+  main:
+    width: 2/3
+    sections:
+      listed:
+        extends: sections/deliberative-tools
+        label: Published
+        status: listed
+      drafts:
+        extends: sections/deliberative-tools
+        label: Drafts
+        status: draft
+      unlisted:
+        extends: sections/deliberative-tools
+        label: In Review
+        status: unlisted

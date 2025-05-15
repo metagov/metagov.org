@@ -73,9 +73,7 @@
             <?php 
               $researchDirectors = $page->research_directors()->toUsers();
               foreach ($researchDirectors as $person) : ?>
-              <a class="inline-block mr-2" href="<?= $person->personPage()->toPage()->url() ?>">
-                <?php echo $person->name() ?>
-              </a>
+              <a class="inline-block mr-2" href="/members/<?= Str::slug($person->username()) ?>"><?= $person->name() ?></a>
             <?php endforeach ?>
           </div>
         <?php endif ?>

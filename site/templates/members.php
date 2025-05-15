@@ -1,7 +1,7 @@
 <?php snippet('header') ?>
 <div class="container max-w-[1088px] py-8">
   <div class="mb-8">
-    <h1 class="text-xxl"><?= $page->title()->esc() ?></h1>
+    <h1 class="text-xxl"><?= $page->name()->esc() ?></h1>
     <h2 class="text-large font-normal">
       <?= $page->subHeading()->esc() ?>
     </h2>
@@ -31,7 +31,7 @@
             <?php foreach ($people as $person) : ?>
               <li>
                 <p class="mb-0">
-                  <a href="/members/<?= $person->slug() ?>" class="text-secondary dark:text-secondary-dark mb-0"><?= $person->title() ?></a>
+                  <a href="/members/<?= $person->slug() ?>" class="text-secondary dark:text-secondary-dark mb-0"><?= $person->name() ?></a>
                   <span class="text-tag italic leading-4"><?= $person->affiliation() ?></span>
                 </p>
               </li>
@@ -64,7 +64,7 @@
   <ul class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6 mx-auto list">
     <?php $lastImage = "" ?>
     <?php foreach ($page->children()->listed() as $person) : ?>
-      <li class="cursor-pointer p-2 rounded-sm hover:outline hover:outline-brand hover:bg-brand/10" x-data="{ openPerson : false }" @click="openPerson = true" data-title="<?= $person->title() ?>" data-role="<?= $person->role() ?? null ?>" data-research-interests="<?= $person->interests() ?? null ?>">
+      <li class="cursor-pointer p-2 rounded-sm hover:outline hover:outline-brand hover:bg-brand/10" x-data="{ openPerson : false }" @click="openPerson = true" data-title="<?= $person->name() ?>" data-role="<?= $person->role() ?? null ?>" data-research-interests="<?= $person->interests() ?? null ?>">
         <?php
         do {
           $image = $page->avatars()->toFiles()->shuffle()->first();
@@ -81,7 +81,7 @@
                                                                                                                                 ]
                                                                                                                               ) ?>" alt="<?= $image->alt()->esc() ?>" width="<?= $image->resize(154)->width() ?>" height="<?= $image->resize(235)->height() ?>">
 
-        <p class="text-small text-secondary dark:text-secondary-dark mb-1"><?= $person->title() ?></p>
+        <p class="text-small text-secondary dark:text-secondary-dark mb-1"><?= $person->name() ?></p>
         <p class="text-tag italic mb-2"><?= $person->affiliation() ?></p>
         
         <?php if ($person->role()->isNotEmpty()) : ?>
@@ -98,7 +98,7 @@
           <?php endforeach ?>
         </p>
 
-        <?php snippet('modal-person', ['page' => $person, 'title' => $person->title(), 'subheading' => '', 'small' => 'true', 'image' => $image]) ?>
+        <?php snippet('modal-person', ['page' => $person, 'title' => $person->name(), 'subheading' => '', 'small' => 'true', 'image' => $image]) ?>
       </li>
     <?php endforeach ?>
   </ul>

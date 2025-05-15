@@ -16,7 +16,8 @@ class MembersPage extends Page {
         'template' => 'person',
         'model' => 'member',
         'content' => [
-          'title' => $user->username(),
+          'slug' => Str::slug($user->username()),
+          'name' => $user->username(),
           'email' => $user->email(),
           'affiliation' => $user->affiliation(),
           'image' => $user->image(),

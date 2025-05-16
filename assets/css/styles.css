@@ -702,8 +702,8 @@ article p,
   .prose p{
   margin-bottom: 2rem;
   font-family: Inter;
-  font-size: 1.2rem;
-  line-height: 1.8rem;
+  font-size: 1rem;
+  line-height: 1.6rem;
   font-weight: 300;
 }
 
@@ -711,8 +711,8 @@ article li,
   .prose li{
   margin-bottom: 0.5rem;
   font-family: Inter;
-  font-size: 1.2rem;
-  line-height: 1.8rem;
+  font-size: 1rem;
+  line-height: 1.6rem;
   font-weight: 300;
 }
 

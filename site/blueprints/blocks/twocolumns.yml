@@ -1,0 +1,11 @@
+name: Two Columns
+icon: columns
+preview: fields
+wysiwyg: true
+fields:
+  column1:
+    label: Column 1
+    type: writer
+  column2:
+    label: Column 2
+    type: writer 

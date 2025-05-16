@@ -16,7 +16,7 @@ class MembersPage extends Page {
         'template' => 'person',
         'model' => 'member',
         'content' => [
-          'slug' => Str::slug($user->username()),
+          'title' => $user->username(),
           'name' => $user->username(),
           'email' => $user->email(),
           'affiliation' => $user->affiliation(),
@@ -30,7 +30,8 @@ class MembersPage extends Page {
           'offering_mentorship' => $user->offering_mentorship(),
           'seeking_mentorship' => $user->seeking_mentorship(),
           'date_joined' => $user->date_joined(),
-          'public' => $user->public()
+          'public' => $user->public(),
+          'slug' => Str::slug($user->username())
         ]
       ];
     }

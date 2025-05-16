@@ -19,26 +19,22 @@
   </div>
   
   <div class="mb-8">
-    <div class="flex flex-wrap -mx-4">
-      <?php foreach ($page->team()->split() as $role) : ?>
-        <div class="w-full md:w-1/2 px-4 mb-8">
-          <div class="prose">
-            <h4><?= $role ?></h4>
-          </div>
+    <div class="w-full px-4 mb-8">
+      <div class="prose">
+        <h1 class="text-xxl mb-2"><?= $page->title()->esc() ?></h1>
 
-          <?php $people = $page->children()->filterBy('role', $role, ',') ?>
-          <ul class="grid grid-cols-1 gap-2">
-            <?php foreach ($people as $person) : ?>
-              <li>
-                <p class="mb-0">
-                  <a href="/members/<?= $person->slug() ?>" class="text-secondary dark:text-secondary-dark mb-0"><?= $person->name() ?></a>
-                  <span class="text-tag italic leading-4"><?= $person->affiliation() ?></span>
-                </p>
-              </li>
-            <?php endforeach ?>
-          </ul>
-        </div>
-      <?php endforeach ?>
+        <article class="mb-8 prose">
+          <?php foreach ($page->text()->toBlocks() as $block) : ?>
+            <div id="<?= $block->id() ?>" class="block block-type-<?= $block->type() ?>">
+              <?php snippet('blocks/' . $block->type(), [
+                'block' => $block,
+                'theme' => 'dark'
+              ]) ?>
+            </div>
+          <?php endforeach ?>
+        </article>
+
+      </div>
     </div>
   </div>
 
@@ -85,7 +81,7 @@
         <p class="text-tag italic mb-2"><?= $person->affiliation() ?></p>
         
         <?php if ($person->role()->isNotEmpty()) : ?>
-          <span class="button inline-block mb-2"><?= $person->role()->split()[0] ?></span>
+          <span class="button inline-block text-tag"><?= $person->role()->split()[0] ?></span>
         <?php endif ?>
 
         <p class="text-tag">

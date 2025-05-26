@@ -9,6 +9,7 @@
     <?php snippet('blocks/filter', ['filters' => $types, 'group' => 'type', 'label' => 'Project type']) ?>
     <?php snippet('blocks/filter', ['filters' => $status, 'group' => 'status', 'label' => 'Status']) ?>
     <?php snippet('blocks/filter', ['filters' => $seekingParticipants, 'group' => 'participants', 'label' => 'Seeking participants']) ?>
+    <button class="button py-2 w-full md:w-1/2 lg:w-auto" onclick="resetFilter()">Reset filters</button>
   </div>
   <ul class="grid sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 mx-auto list">
     <?php foreach ($page->children()->listed()->sortBy('modified', 'desc') as $project) : ?>
@@ -40,9 +41,13 @@
   var filters = {
     category: [],
     type: [],
-    status: [],
+    status: ['Active'],
     participants: []
   }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    updateList();
+  });
 
   var options = {
     valueNames: [{
@@ -104,6 +109,28 @@
       if (category && type && status && participants) return true
       else return false
     })
+
+    const filterGroups = ['category', 'type', 'status', 'participants'];
+
+    // For each filter group, update the checked state of checkboxes based on filters object
+    filterGroups.forEach(group => {
+      console.log(document.querySelectorAll(`input[data-group="${group}"]`))
+      document.querySelectorAll(`input[data-group="${group}"]`).forEach(input => {
+        console.log(input.dataset.value, filters[group])
+        input.checked = filters[group].includes(input.dataset.value);
+      });
+    });
+
+    // Show or hide the reset button based on whether any filters are applied
+    const resetBtn = document.querySelector('button[onclick="resetFilter()"]');
+    if (resetBtn) {
+      const isFiltered =
+        filters.category.length > 0 ||
+        filters.type.length > 0 ||
+        filters.status.length > 0 ||
+        filters.participants.length > 0;
+      resetBtn.style.display = isFiltered ? 'inline-block' : 'none';
+    }
   }
 
   var toggleFilter = (e) => {

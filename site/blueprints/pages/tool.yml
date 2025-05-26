@@ -53,7 +53,6 @@ columns:
               - "Decision"
               - "Actuation"
               - "Reflection"
-
           function:
             label: Function
             type: tags
@@ -67,7 +66,6 @@ columns:
               - "Decide"
               - "Fact Checking"
               - "Summary"
-
           license:
             label: License
             type: tags
@@ -76,8 +74,10 @@ columns:
               - "GPL"
               - "AGPL"
               - "Proprietary"
-
           infrastructure:
             label: Infrastructure dependencies
             description: Systems required to run the tool (e.g. chatGPT)
             type: text
+          primary_intended_users:
+            label: Primary intended users
+            type: tags

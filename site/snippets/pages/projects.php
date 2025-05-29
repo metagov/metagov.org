@@ -38,6 +38,7 @@
 
 
 <script>
+  // Initial filters
   var filters = {
     category: [],
     type: [],
@@ -45,18 +46,22 @@
     participants: []
   }
 
+  // Initialize the filters based on the initial state
   document.addEventListener('DOMContentLoaded', function() {
     updateList();
   });
 
+  // Initialize List.js
   var options = {
     valueNames: [{
       data: ['title', 'category', 'type', 'status', 'participants']
     }]
   }
-
+  // Create a new List instance for the projects
+  // This will allow us to filter and sort the project items based on the defined options
   var projectList = new List('projects', options);
 
+  // Display "No results" message if no projects match the filters
   projectList.on('updated', function(list) {
     if (list.matchingItems.length > 0) {
       document.getElementById("no-result").style.display = 'hidden'
@@ -65,6 +70,7 @@
     }
   });
 
+  // Function to reset filters
   var resetFilter = () => {
     filters = {
       category: [],
@@ -75,6 +81,11 @@
     updateList()
   }
 
+  // Function to update the project list based on filters
+  // This function filters the project list based on the selected filters
+  // and updates the checkboxes and active filter counts accordingly
+  // It checks each project item against the filters and only displays those that match.
+  // The function is called whenever a filter is toggled or reset.
   var updateList = () => {
     projectList.filter(function(item) {
       let category = false
@@ -116,9 +127,20 @@
     filterGroups.forEach(group => {
       console.log(document.querySelectorAll(`input[data-group="${group}"]`))
       document.querySelectorAll(`input[data-group="${group}"]`).forEach(input => {
-        console.log(input.dataset.value, filters[group])
         input.checked = filters[group].includes(input.dataset.value);
       });
+
+      // Update the label to show the number of active filters
+      const countSpan = document.getElementById(`active-filter-count-${group}`);
+      const button = document.getElementById(`filter-button-${group}`);
+      const count = filters[group].length;
+      console.log(countSpan, button, count);
+      if (countSpan && count > 0) {
+        button.classList.add('active');
+      } else {
+        button.classList.remove('active');
+      }
+      countSpan.innerHTML = count > 0 ? `(${count})` : '';
     });
 
     // Show or hide the reset button based on whether any filters are applied
@@ -133,6 +155,7 @@
     }
   }
 
+  // Function to toggle a filter checkbox
   var toggleFilter = (e) => {
     const checked = e.target.checked
     const value = e.target.dataset.value

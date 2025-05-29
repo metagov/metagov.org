@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -74,7 +74,6 @@ main {
   div.embedded_schedule a {
     @apply underline underline-offset-4 text-default hover:text-brand dark:text-white dark:hover:text-brand;
   }
-  
 
   table th {
     @apply p-2 border-b border-secondary text-left;
@@ -87,6 +86,10 @@ main {
 
   .button {
     @apply hover:bg-brand/15 px-2 py-1 text-brand font-sans text-small border-brand border rounded-sm;
+  }
+
+  .button.active {
+    @apply bg-brand/15;
   }
 
   .active-page {

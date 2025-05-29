@@ -12,23 +12,40 @@
     <button class="button py-2 w-full md:w-1/2 lg:w-auto" onclick="resetFilter()">Reset filters</button>
   </div>
   <ul class="grid sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 mx-auto list">
-    <?php foreach ($page->children()->listed()->sortBy('modified', 'desc') as $project) : ?>
-      <li class="list-none" data-title="<?= $project->title() ?>" data-status="<?= $project->projectStatus() ?? null ?>" data-type="<?= $project->type() ?? null ?>" data-category="<?= $project->category() ?? null ?>" data-participants="<?= ($project->seekingParticipants()->toBool()) ? 'Yes' : 'No' ?>">
-        <a href="<?= $project->url() ?>">
-          <?php snippet('window', ['title' => $project->title(), 'subheading' => $project->subheading()], slots: true) ?>
-          <?php if ($image = $project->cover()->toFile()) : ?>
-            <img class="w-full" src="<?= $image->crop(434, 235, "center")->url() ?>" srcset="<?= $image->srcset(
-                                                                                                [
-                                                                                                  '1x'  => ['width' => 434, 'height' => 235, 'crop' => 'center'],
-                                                                                                  '2x'  => ['width' => 868, 'height' => 470, 'crop' => 'center'],
-                                                                                                  '3x'  => ['width' => 1320, 'height' => 705, 'crop' => 'center'],
-                                                                                                ]
-                                                                                              ) ?>" alt="<?= $image->alt()->esc() ?>" width="<?= $image->resize(434)->width() ?>" height="<?= $image->resize(235)->height() ?>">
-          <?php endif ?>
-          <?php endsnippet() ?>
-        </a>
-      </li>
+    <?php
+    // Get all projects
+    $projects = $page->children()->listed()->sortBy('modified', 'desc');
 
+    // Get only active projects
+    $activeProjects = $projects->filterBy('projectStatus', 'Active', ',');
+
+    // Get only projects that are not active
+    $otherProjects = $projects->filterBy('projectStatus', '!=', 'Active', ',');
+
+    // Group together to ensure active projects are displayed first
+    $grouped = [
+      'Active' => $activeProjects,
+      'Other' => $otherProjects
+    ];
+    ?>
+    <?php foreach ($grouped as $group): ?>
+      <?php foreach ($group as $project) : ?>
+        <li class="list-none" data-title="<?= $project->title() ?>" data-status="<?= $project->projectStatus() ?? null ?>" data-type="<?= $project->type() ?? null ?>" data-category="<?= $project->category() ?? null ?>" data-participants="<?= ($project->seekingParticipants()->toBool()) ? 'Yes' : 'No' ?>">
+          <a href="<?= $project->url() ?>">
+            <?php snippet('window', ['title' => $project->title(), 'subheading' => $project->subheading()], slots: true) ?>
+            <?php if ($image = $project->cover()->toFile()) : ?>
+              <img class="w-full" src="<?= $image->crop(434, 235, "center")->url() ?>" srcset="<?= $image->srcset(
+                                                                                                  [
+                                                                                                    '1x'  => ['width' => 434, 'height' => 235, 'crop' => 'center'],
+                                                                                                    '2x'  => ['width' => 868, 'height' => 470, 'crop' => 'center'],
+                                                                                                    '3x'  => ['width' => 1320, 'height' => 705, 'crop' => 'center'],
+                                                                                                  ]
+                                                                                                ) ?>" alt="<?= $image->alt()->esc() ?>" width="<?= $image->resize(434)->width() ?>" height="<?= $image->resize(235)->height() ?>">
+            <?php endif ?>
+            <?php endsnippet() ?>
+          </a>
+        </li>
+      <?php endforeach ?>
     <?php endforeach ?>
   </ul>
   <div id="no-result" class="hidden">
@@ -42,7 +59,7 @@
   var filters = {
     category: [],
     type: [],
-    status: ['Active'],
+    status: [],
     participants: []
   }
 
@@ -88,27 +105,51 @@
   // The function is called whenever a filter is toggled or reset.
   var updateList = () => {
     projectList.filter(function(item) {
-      let category = false
-      let type = false
-      let status = false
-      let participants = false
+      let category = false;
+      let type = false;
+      let status = false;
+      let participants = false;
 
-      if (filters.category.find((element) => item.values().category.includes(element)) || filters.category.length == 0) {
-        category = true
+      if (
+        filters.category.length === 0 ||
+        filters.category.some(selected =>
+          item.values().category
+          .split(',')
+          .map(s => s.trim())
+          .includes(selected)
+        )
+      ) {
+        category = true;
       } else {
-        category = false
+        category = false;
       }
 
-      if (filters.type.find((element) => item.values().type.includes(element)) || filters.type.length == 0) {
-        type = true
+      if (
+        filters.type.length === 0 ||
+        filters.type.some(selected =>
+          item.values().type
+          .split(',')
+          .map(s => s.trim())
+          .includes(selected)
+        )
+      ) {
+        type = true;
       } else {
-        type = false
+        type = false;
       }
 
-      if (filters.status.indexOf(item.values().status) > -1 || filters.status.length == 0) {
-        status = true
+      if (
+        filters.status.length === 0 ||
+        filters.status.some(selected =>
+          item.values().status
+          .split(',')
+          .map(s => s.trim())
+          .includes(selected)
+        )
+      ) {
+        status = true;
       } else {
-        status = false
+        status = false;
       }
 
       if (filters.participants.indexOf(item.values().participants) > -1 || filters.participants.length == 0) {

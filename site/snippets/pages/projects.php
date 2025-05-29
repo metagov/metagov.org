@@ -1,6 +1,6 @@
 <div id="projects" class="container max-w-[1088px] py-8">
   <div class="mb-12">
-    <h1 class="text-xl font-semibold mb-2">Projects</h1>
+    <h1 class="text-xxl mb-2">Projects</h1>
   </div>
   <div class="mb-12 flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-4">
     <span>FILTERS:</span>

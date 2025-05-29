@@ -1,7 +1,15 @@
 <div id="projects" class="container max-w-[1088px] py-8">
-  <div class="mb-12">
-    <h1 class="text-xl mb-2">Deliberative Tool Gallery</h1>
+  <div class="mb-8">
+    <h1 class="text-xxl mb-2"><?= $page->title()->esc() ?></h1>
+    <h2 class="text-large">
+      <?= $page->subHeading()->esc() ?>
+    </h2>
   </div>
+
+  <?php if ($image = $page->cover()->toFile()) : ?>
+    <img class="mb-8 w-full" src="<?= $image->url() ?>" alt="<?= $image->alt()->esc() ?>">
+  <?php endif ?>
+
   <div class="mb-8 prose max-w-prose">
     <?php foreach ($page->content()->content()->toBlocks() as $block) : ?>
       <div id="<?= $block->id() ?>" class="block block-type-<?= $block->type() ?>">

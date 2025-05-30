@@ -78,7 +78,19 @@
           <span><?= $page->outputs()->esc() ?></span>
         </div>
       <?php endif ?>
+
+      <!-- camel case not working so using snake case instead for accessing primary_intended_users -->
+      <?php if ($page->primary_intended_users()->isNotEmpty()) : ?>
+        <div class="space-y-1">
+          <h5 class="mb-2">Primary Intended Users</h5>
+          <?php foreach ($page->primary_intended_users()->split() as $user) : ?>
+            <span class="tag"><?= $user ?></span>
+          <?php endforeach ?>
+        </div>
+      <?php endif ?>
     </div>
+
+
 
     <!-- Tool description -->
     <?php if ($page->description()->isNotEmpty()) : ?>

@@ -17,8 +17,11 @@
                 focusAfter && focusAfter.focus()
             }
         }" x-on:keydown.escape.prevent.stop="close($refs.button)" x-on:focusin.window="! $refs.panel.contains($event.target) && close()" x-id="['dropdown-button']" class="relative window-scrollbar">
-  <button class="flex gap-2 items-center justify-between button py-2 w-full md:w-1/2 lg:w-auto" x-ref="button" x-on:click="toggle()" :aria-expanded="filterOpen" :aria-controls="$id('dropdown-button')" type="button">
-    <?= $label ?>
+  <button class="flex gap-2 items-center justify-between button py-2 w-full md:w-1/2 lg:w-auto" id="filter-button-<?= $group ?>" x-ref="button" x-on:click="toggle()" :aria-expanded="filterOpen" :aria-controls="$id('dropdown-button')" type="button">
+    <span>
+      <?= $label ?>
+      <span id="active-filter-count-<?= $group ?>"></span>
+    </span>
     <svg :class="filterOpen ? 'rotate-180' : ''" width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path fill-rule="evenodd" clip-rule="evenodd" d="M12 5.5C11.72 5.5 11.47 5.61 11.29 5.79L8 9.09L4.71 5.79C4.53 5.61 4.28 5.5 4 5.5C3.45 5.5 3 5.95 3 6.5C3 6.78 3.11 7.03 3.29 7.21L7.29 11.21C7.47 11.39 7.72 11.5 8 11.5C8.28 11.5 8.53 11.39 8.71 11.21L12.71 7.21C12.89 7.03 13 6.78 13 6.5C13 5.95 12.55 5.5 12 5.5Z" fill="#00CC99" />
     </svg>

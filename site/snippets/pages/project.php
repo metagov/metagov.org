@@ -63,7 +63,7 @@
       <div>
         <?php if ($page->contact()->isNotEmpty()) : ?>
           <div class="mb-8">
-            <h5 class="mb-2">PRINCIPLE CONTACT</h5>
+            <h5 class="mb-2">PRINCIPAL CONTACT</h5>
             <?= Html::email($page->contact()) ?>
           </div>
         <?php endif ?>

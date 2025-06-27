@@ -4,7 +4,7 @@ The Metagovernance Project is an interdisciplinary research collective. We build
 
 
 ## Staging site
-http://164.90.138.103/
+http://164.90.138.103/git
 
 ## Dev guidelines
 * For local development, use composer: `composer start`.

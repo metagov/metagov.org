@@ -42,7 +42,7 @@
           <path d="M31.7287 28.8484V26.3471H31.6401L29.9759 30.4092L28.3117 26.3471H28.2231V32.8021H27.3516V24.9094H28.5726L29.9611 28.3905H30.03L31.4185 24.9094H32.5953V32.8021H31.7238V28.8434L31.7287 28.8484Z" fill="#00CC99" />
           <path d="M41 1H1V41H41V1Z" stroke="#00CC99" stroke-width="2" stroke-miterlimit="10" />
         </svg>
-        <span>Metagov</span>
+        <span class="metagov-logo">Metagov</span>
       </a>
       <?php snippet('menu') ?>
       </div>

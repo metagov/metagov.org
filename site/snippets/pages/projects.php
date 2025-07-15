@@ -3,33 +3,18 @@
     <h1 class="text-xxl mb-2">Projects</h1>
   </div>
   <div class="mb-12 flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-4">
-    <span>FILTERS:</span>
-    <input class="search w-full md:w-1/2 lg:w-auto" placeholder="Search" />
+    <input class="search w-full md:w-1/2 lg:w-auto" placeholder="Filter projects..." />
     <?php snippet('blocks/filter', ['filters' => $categories, 'group' => 'category', 'label' => 'Category']) ?>
     <?php snippet('blocks/filter', ['filters' => $types, 'group' => 'type', 'label' => 'Project type']) ?>
     <?php snippet('blocks/filter', ['filters' => $status, 'group' => 'status', 'label' => 'Status']) ?>
-    <?php snippet('blocks/filter', ['filters' => $seekingParticipants, 'group' => 'participants', 'label' => 'Seeking participants']) ?>
-    <button class="button py-2 w-full md:w-1/2 lg:w-auto" onclick="resetFilter()">Reset filters</button>
+    <button class="text-brand cursor-pointer w-full md:w-1/2 lg:w-auto" onclick="resetFilter()">Reset filters</button>
   </div>
   <ul class="grid sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 mx-auto list">
     <?php
-    // Get all projects
-    $projects = $page->children()->listed()->sortBy('modified', 'desc');
-
-    // Get only active projects
-    $activeProjects = $projects->filterBy('projectStatus', 'Active', ',');
-
-    // Get only projects that are not active
-    $otherProjects = $projects->filterBy('projectStatus', '!=', 'Active', ',');
-
-    // Group together to ensure active projects are displayed first
-    $grouped = [
-      'Active' => $activeProjects,
-      'Other' => $otherProjects
-    ];
+    // Get all projects sorted alphabetically by title
+    $projects = $page->children()->listed()->sortBy('title', 'asc');
     ?>
-    <?php foreach ($grouped as $group): ?>
-      <?php foreach ($group as $project) : ?>
+    <?php foreach ($projects as $project) : ?>
         <li class="list-none" data-title="<?= $project->title() ?>" data-status="<?= $project->projectStatus() ?? null ?>" data-type="<?= $project->type() ?? null ?>" data-category="<?= $project->category() ?? null ?>" data-participants="<?= ($project->seekingParticipants()->toBool()) ? 'Yes' : 'No' ?>">
           <a href="<?= $project->url() ?>">
             <?php snippet('window', ['title' => $project->title(), 'subheading' => $project->subheading()], slots: true) ?>
@@ -46,7 +31,6 @@
           </a>
         </li>
       <?php endforeach ?>
-    <?php endforeach ?>
   </ul>
   <div id="no-result" class="hidden">
     <p>No projects found</p>
@@ -55,37 +39,79 @@
 
 
 <script>
-  // Initial filters
+  // Initial filters - default to Active status
   var filters = {
     category: [],
     type: [],
-    status: [],
+    status: ['Active'],
     participants: []
   }
 
-  // Initialize the filters based on the initial state
-  document.addEventListener('DOMContentLoaded', function() {
-    updateList();
-  });
-
-  // Initialize List.js
-  var options = {
-    valueNames: [{
-      data: ['title', 'category', 'type', 'status', 'participants']
-    }]
-  }
-  // Create a new List instance for the projects
-  // This will allow us to filter and sort the project items based on the defined options
-  var projectList = new List('projects', options);
-
-  // Display "No results" message if no projects match the filters
-  projectList.on('updated', function(list) {
-    if (list.matchingItems.length > 0) {
-      document.getElementById("no-result").style.display = 'hidden'
-    } else {
-      document.getElementById("no-result").style.display = 'block'
+  // Initialize List.js and filters
+  var projectList = null;
+  
+  function initializeProjectList() {
+    if (document.getElementById('projects')) {
+      const options = {
+        valueNames: [{
+          data: ['title', 'category', 'type', 'status', 'participants']
+        }]
+      }
+      projectList = new List('projects', options);
+      
+      // Display "No results" message if no projects match the filters
+      projectList.on('updated', function(list) {
+        const noResultElement = document.getElementById("no-result");
+        if (noResultElement) {
+          if (list.matchingItems.length > 0) {
+            noResultElement.classList.add('hidden');
+          } else {
+            noResultElement.classList.remove('hidden');
+          }
+        }
+      });
+      
+      console.log('List.js initialized successfully');
+      return true;
     }
-  });
+    return false;
+  }
+
+  // Initialize the filters based on the initial state
+  // Use a more reliable initialization approach that works with HTMX-loaded content
+  function initializeFilters(attempt = 0) {
+    // Check if required elements exist and List.js is ready
+    if (document.getElementById('projects') && document.querySelector('input[data-group="status"]')) {
+      
+      // Initialize List.js first
+      if (!projectList && !initializeProjectList()) {
+        console.warn('Failed to initialize List.js');
+        return;
+      }
+      
+             // Wait a bit more to ensure all DOM elements are fully ready
+       setTimeout(() => {
+         console.log('Initializing filters with Active default');
+         updateList();
+       }, 100);
+      
+    } else if (attempt < 20) { // Max 20 attempts (1 second total)
+      // If elements don't exist yet, wait a bit and try again
+      setTimeout(() => initializeFilters(attempt + 1), 50);
+    } else {
+      console.warn('Failed to initialize filters: required elements not found');
+    }
+  }
+  
+  // Initialize on DOMContentLoaded for regular page loads
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeFilters);
+  } else {
+    // Document is already loaded (likely HTMX insertion), initialize immediately
+    setTimeout(initializeFilters, 0);
+  }
+
+
 
   // Function to reset filters
   var resetFilter = () => {
@@ -104,6 +130,12 @@
   // It checks each project item against the filters and only displays those that match.
   // The function is called whenever a filter is toggled or reset.
   var updateList = () => {
+    // Safety check: ensure projectList is initialized
+    if (!projectList) {
+      console.warn('projectList not initialized yet, skipping update');
+      return;
+    }
+    
     projectList.filter(function(item) {
       let category = false;
       let type = false;
@@ -202,8 +234,17 @@
     const value = e.target.dataset.value
     const group = e.target.dataset.group
 
+    console.log('Filter toggled:', group, value, checked);
+
+    if (!group || !value) {
+      console.warn('Missing filter data attributes');
+      return;
+    }
+
     if (checked) {
-      filters[group].push(value)
+      if (!filters[group].includes(value)) {
+        filters[group].push(value);
+      }
     } else {
       const index = filters[group].indexOf(value);
       if (index > -1) {

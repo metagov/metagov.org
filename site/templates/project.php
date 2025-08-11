@@ -1,7 +1,7 @@
 <?php snippet('header') ?>
 
 <?php if ($ajax) : ?>
-<?php endif ?>
+<?php endif ?>,
 <?php snippet('pages/project', ['page' => $page]) ?>
 <?php if ($ajax) : ?>
   <?php endsnippet() ?>

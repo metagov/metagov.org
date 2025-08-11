@@ -2,20 +2,36 @@
   <div class="mb-12">
     <h1 class="text-xxl mb-2">Projects</h1>
   </div>
-  <div class="mb-12 flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-4">
-    <input class="search w-full md:w-1/2 lg:w-auto" placeholder="Filter projects..." />
-    <?php snippet('blocks/filter', ['filters' => $categories, 'group' => 'category', 'label' => 'Category']) ?>
-    <?php snippet('blocks/filter', ['filters' => $types, 'group' => 'type', 'label' => 'Project type']) ?>
-    <?php snippet('blocks/filter', ['filters' => $status, 'group' => 'status', 'label' => 'Status']) ?>
-    <button class="text-brand cursor-pointer w-full md:w-1/2 lg:w-auto" onclick="resetFilter()">Reset filters</button>
-  </div>
+  
+      <div class="mb-12 flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-4">
+      <div class="flex flex-col lg:flex-row lg:items-center gap-2 lg:gap-4 lg:flex-1 grow">
+        <input class="search w-full md:w-1/2 lg:w-auto" placeholder="Filter projects..." />
+        <?php snippet('blocks/filter', ['filters' => $categories, 'group' => 'category', 'label' => 'Category']) ?>
+        <?php snippet('blocks/filter', ['filters' => $types, 'group' => 'type', 'label' => 'Project type']) ?>
+        <?php snippet('blocks/filter', ['filters' => $status, 'group' => 'status', 'label' => 'Status']) ?>
+        <button class="text-brand cursor-pointer w-full md:w-1/2 lg:w-auto" onclick="resetFilter()">Reset</button>
+      </div>
+
+      <div class="lg:flex-shrink-0">
+        <?php snippet('blocks/sort', [
+          'options' => [
+            ['value' => 'updated', 'label' => 'Last updated'],
+            ['value' => 'alphabetical', 'label' => 'Alphabetical']
+          ],
+          'default' => 'updated',
+          'onchange' => 'sortProjects',
+          'containerClass' => 'w-full lg:w-auto'
+        ]) ?>
+      </div>
+    </div>
+
   <ul class="grid sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 mx-auto list">
     <?php
-    // Get all projects sorted alphabetically by title
-    $projects = $page->children()->listed()->sortBy('title', 'asc');
+    // Get all projects sorted by last updated (default)
+    $projects = $page->children()->listed()->sortBy('date', 'desc');
     ?>
     <?php foreach ($projects as $project) : ?>
-        <li class="list-none" data-title="<?= $project->title() ?>" data-status="<?= $project->projectStatus() ?? null ?>" data-type="<?= $project->type() ?? null ?>" data-category="<?= $project->category() ?? null ?>" data-participants="<?= ($project->seekingParticipants()->toBool()) ? 'Yes' : 'No' ?>">
+        <li class="list-none" data-title="<?= $project->title() ?>" data-status="<?= $project->projectStatus() ?? null ?>" data-type="<?= $project->type() ?? null ?>" data-category="<?= $project->category() ?? null ?>" data-participants="<?= ($project->seekingParticipants()->toBool()) ? 'Yes' : 'No' ?>" data-date="<?= $project->date()->toDate('Y-m-d') ?>">
           <a href="<?= $project->url() ?>">
             <?php snippet('window', ['title' => $project->title(), 'subheading' => $project->subheading()], slots: true) ?>
             <?php if ($image = $project->cover()->toFile()) : ?>
@@ -54,7 +70,7 @@
     if (document.getElementById('projects')) {
       const options = {
         valueNames: [{
-          data: ['title', 'category', 'type', 'status', 'participants']
+          data: ['title', 'category', 'type', 'status', 'participants', 'date']
         }]
       }
       projectList = new List('projects', options);
@@ -122,6 +138,21 @@
       participants: []
     }
     updateList()
+  }
+
+  // Function to sort projects
+  var sortProjects = (sortType) => {
+    if (!projectList) {
+      console.warn('projectList not initialized yet, skipping sort');
+      return;
+    }
+    
+    if (sortType === 'alphabetical') {
+      projectList.sort('title', { order: 'asc' });
+    } else if (sortType === 'updated') {
+      // Sort by date in descending order (newest first)
+      projectList.sort('date', { order: 'desc' });
+    }
   }
 
   // Function to update the project list based on filters

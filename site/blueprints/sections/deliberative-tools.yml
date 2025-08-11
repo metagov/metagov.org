@@ -1,6 +1,6 @@
 type: pages
 label: Tools
-parent: kirby.page("deliberative-tool-gallery")
+parent: kirby.page("delib-tools")
 info: "{{ page.date.toDate('d.m.Y') }}"
 template: tool
 empty: No tools yet

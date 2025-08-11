@@ -39,7 +39,6 @@ columns:
       description:
         label: Short description
         type: textarea
-        maxlength: 600
       participate:
         label: Paths to participating
         type: textarea

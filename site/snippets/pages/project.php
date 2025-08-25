@@ -14,7 +14,7 @@
         <?= $page->title()->esc() ?>
       </h1>
 
-      <?php foreach ($page->projectStatus()->split() as $key => $status) : ?>
+      <?php foreach ($page->project_status()->split() as $key => $status) : ?>
         <?php if ($key == 0) : ?>
           <span class="tag active"><?= $status ?></span>
         <?php else : ?>
@@ -31,7 +31,7 @@
   </div>
 
   <?php if ($page->cover()->isNotEmpty()) : ?>
-    <img class="mb-8 border border-brand shadow-window hover:shadow-windowhover transition-[opacity,box-shadow]" src="<?= $page->image()->url() ?>" alt="<?= $page->image()->alt()->esc() ?>">
+    <img class="mb-8 border border-brand shadow-window hover:shadow-windowhover transition-[opacity,box-shadow]" src="<?= $page->cover()->toFile()->url() ?>" alt="<?= $page->cover()->toFile()->alt()->esc() ?>">
   <?php endif ?>
 
   <article>

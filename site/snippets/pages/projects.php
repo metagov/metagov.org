@@ -31,7 +31,7 @@
     $projects = $page->children()->listed()->sortBy('date', 'desc');
     ?>
     <?php foreach ($projects as $project) : ?>
-        <li class="list-none" data-title="<?= $project->title() ?>" data-status="<?= $project->projectStatus() ?? null ?>" data-type="<?= $project->type() ?? null ?>" data-category="<?= $project->category() ?? null ?>" data-participants="<?= ($project->seekingParticipants()->toBool()) ? 'Yes' : 'No' ?>" data-date="<?= $project->date()->toDate('Y-m-d') ?>">
+        <li class="list-none" data-title="<?= $project->title() ?>" data-status="<?= $project->project_status() ?? null ?>" data-type="<?= $project->type() ?? null ?>" data-category="<?= $project->category() ?? null ?>" data-participants="<?= ($project->seeking_participants()->toBool()) ? 'Yes' : 'No' ?>" data-date="<?= $project->date()->toDate('Y-m-d') ?>">
           <a href="<?= $project->url() ?>">
             <?php snippet('window', ['title' => $project->title(), 'subheading' => $project->subheading()], slots: true) ?>
             <?php if ($image = $project->cover()->toFile()) : ?>

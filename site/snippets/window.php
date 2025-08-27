@@ -1,4 +1,4 @@
-<div class="window-scrollbar bg-bg dark:bg-default border border-secondary dark:border-secondary-dark opacity-[0.85] hover:opacity-100 shadow-window hover:shadow-windowhover transition-[opacity,box-shadow] flex flex-col h-full relative">
+<div class="window-scrollbar bg-bg dark:bg-default border border-secondary dark:border-secondary-dark opacity-[0.85] hover:opacity-100 shadow-window hover:shadow-windowhover transition-[opacity,box-shadow] flex flex-col h-full relative overflow-hidden">
   <div class="border-b bg-bg dark:bg-default border-secondary dark:border-secondary-dark flex gap-2 items-center px-2 py-1.5 text-secondary dark:text-secondary-dark shrink-0">
     <?php if (!empty($url)) : ?>
       <a href="">
@@ -36,7 +36,7 @@
       </button>
     <?php endif ?>
   </div>
-  <div class="border-secondary dark:border-secondary-dark grow overflow-auto">
+  <div class="border-secondary dark:border-secondary-dark grow overflow-hidden relative">
     <?= $slot ?>
   </div>
   <div class="bg-bg dark:bg-default border-t border-secondary dark:border-secondary-dark text-secondary dark:text-secondary-dark shrink-0">

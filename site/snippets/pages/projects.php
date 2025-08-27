@@ -31,17 +31,17 @@
     $projects = $page->children()->listed()->sortBy('date', 'desc');
     ?>
     <?php foreach ($projects as $project) : ?>
-        <li class="list-none" data-title="<?= $project->title() ?>" data-status="<?= $project->project_status() ?? null ?>" data-type="<?= $project->type() ?? null ?>" data-category="<?= $project->category() ?? null ?>" data-participants="<?= ($project->seeking_participants()->toBool()) ? 'Yes' : 'No' ?>" data-date="<?= $project->date()->toDate('Y-m-d') ?>">
-          <a href="<?= $project->url() ?>">
+        <li class="list-none h-80" data-title="<?= $project->title() ?>" data-status="<?= $project->project_status() ?? null ?>" data-type="<?= $project->type() ?? null ?>" data-category="<?= $project->category() ?? null ?>" data-participants="<?= ($project->seeking_participants()->toBool()) ? 'Yes' : 'No' ?>" data-date="<?= $project->date()->toDate('Y-m-d') ?>">
+          <a href="<?= $project->url() ?>" class="block h-full">
             <?php snippet('window', ['title' => $project->title(), 'subheading' => $project->subheading()], slots: true) ?>
             <?php if ($image = $project->cover()->toFile()) : ?>
-              <img class="w-full" src="<?= $image->crop(434, 235, "center")->url() ?>" srcset="<?= $image->srcset(
+              <img class="w-full h-full object-cover" src="<?= $image->crop(434, 235, "center")->url() ?>" srcset="<?= $image->srcset(
                                                                                                   [
                                                                                                     '1x'  => ['width' => 434, 'height' => 235, 'crop' => 'center'],
                                                                                                     '2x'  => ['width' => 868, 'height' => 470, 'crop' => 'center'],
                                                                                                     '3x'  => ['width' => 1320, 'height' => 705, 'crop' => 'center'],
                                                                                                   ]
-                                                                                                ) ?>" alt="<?= $image->alt()->esc() ?>" width="<?= $image->resize(434)->width() ?>" height="<?= $image->resize(235)->height() ?>">
+                                                                                                ) ?>" alt="<?= $image->alt()->esc() ?>">
             <?php endif ?>
             <?php endsnippet() ?>
           </a>

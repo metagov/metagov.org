@@ -36,7 +36,7 @@
       </button>
     <?php endif ?>
   </div>
-  <div class="border-secondary dark:border-secondary-dark grow overflow-hidden relative">
+  <div class="border-secondary dark:border-secondary-dark grow overflow-auto relative">
     <?= $slot ?>
   </div>
   <div class="bg-bg dark:bg-default border-t border-secondary dark:border-secondary-dark text-secondary dark:text-secondary-dark shrink-0">

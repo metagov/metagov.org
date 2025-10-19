@@ -65,6 +65,12 @@ return [
       'action'  => function () {
         return go('sitemap.xml', 301);
       }
+    ],
+    [
+      'pattern' => 'swag',
+      'action'  => function () {
+        return go('https://metagov.printful.me/', 301);
+      }
     ]
   ],
   'sitemap.ignore' => ['error'],

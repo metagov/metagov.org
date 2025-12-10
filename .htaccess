@@ -39,6 +39,10 @@ RewriteRule ^site/(.*) index.php [L]
 # block direct access to Kirby and the Panel sources
 RewriteRule ^kirby/(.*) index.php [L]
 
+# allow direct access to cg-ai static content
+RewriteCond %{REQUEST_URI} ^/cg-ai/
+RewriteRule ^cg-ai/(.*) cg-ai/$1 [L]
+
 # make site links work
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

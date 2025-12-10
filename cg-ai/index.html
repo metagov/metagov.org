@@ -1,0 +1,127 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><link rel="icon" type="image/png" href="/cg-ai/metagov.png"><meta name="viewport" content="width=device-width"><meta name="generator" content="Astro v4.5.18"><title>Collective Governance for AI: Points of Intervention</title><link rel="stylesheet" href="/cg-ai/astro.css"><script type="module">const h={threshold:.15,rootMargin:"-10% 0px -10% 0px"};let l=0;const f=new IntersectionObserver(e=>{e.forEach(c=>{if(c.isIntersecting){c.target.classList.add("visible");const t=parseInt(c.target.dataset.sectionIndex);l=t,document.querySelectorAll(".stack-item").forEach((s,i)=>{i===t?s.classList.add("active"):s.classList.remove("active")}),o()}})},h),n=document.querySelectorAll("section");n.forEach(e=>{f.observe(e)});n.length>0&&n[0].classList.add("visible");n.length>1&&n[1].classList.add("visible");const r=document.querySelector(".stack-item");r&&(r.classList.add("active"),setTimeout(o,100));function o(){const e=document.querySelector(".stack-item.active"),c=document.querySelector(`section[data-section-index="${l}"]`);if(e&&c&&window.innerWidth>1024){const t=e.getBoundingClientRect(),s=c.getBoundingClientRect(),i=document.getElementById("connector"),u=t.right,v=t.top+t.height/2,m=s.left,g=s.top+s.height/2;i.setAttribute("x1",u),i.setAttribute("y1",v),i.setAttribute("x2",m),i.setAttribute("y2",g)}}const a=document.querySelector(".menu-toggle"),d=document.querySelector(".stack-nav");a&&a.addEventListener("click",()=>{a.classList.toggle("active"),d.classList.toggle("active")});document.querySelectorAll(".stack-item").forEach(e=>{e.addEventListener("click",()=>{const c=e.getAttribute("data-section"),t=document.querySelector(`section[data-section-index="${c}"]`);t&&(t.classList.add("visible"),window.innerWidth<=1024&&(a?.classList.remove("active"),d.classList.remove("active")),setTimeout(()=>{t.scrollIntoView({behavior:"smooth",block:"start"})},50))})});window.addEventListener("scroll",o);window.addEventListener("resize",o);setTimeout(o,100);
+</script></head> <body> <!-- Mobile Menu Toggle --> <button class="menu-toggle" aria-label="Toggle menu"> <div class="hamburger"> <span></span> <span></span> <span></span> </div> </button> <!-- Stack Navigation --> <nav class="stack-nav"> <div class="stack-item" data-section="0"> Collective Governance for AI: Points of Intervention </div><div class="stack-item" data-section="1"> Invitation </div><div class="stack-item" data-section="2"> Model design </div><div class="stack-item" data-section="3"> Data </div><div class="stack-item" data-section="4"> Training </div><div class="stack-item" data-section="5"> Tuning </div><div class="stack-item" data-section="6"> Context </div><div class="stack-item" data-section="7"> Hosting </div><div class="stack-item" data-section="8"> User experience </div><div class="stack-item" data-section="9"> Public policy </div><div class="stack-item" data-section="10"> Culture </div><div class="stack-item" data-section="11"> Economics </div><div class="stack-item" data-section="12"> Ecosystems </div><div class="stack-item" data-section="13"> Feedback loops </div><div class="stack-item" data-section="14"> Now, time to intervene! </div><div class="stack-item" data-section="15"> Credits </div> </nav> <!-- Connection Line SVG --> <svg class="connection-line" width="100%" height="100%"> <line id="connector" x1="0" y1="0" x2="0" y2="0"></line> </svg> <!-- Main Content --> <div class="zine-container"> <section data-section-index="0"><h1>Collective Governance for AI: Points of Intervention</h1>
+<p>Made for <img src="/cg-ai/metagov.png" alt="the world"> by <a href="https://metagov.org">Metagov</a></p>
+</section><section data-section-index="1"><h2>Invitation</h2>
+<p>People often speak about AI as if it is one thing. It can seem like that when we use today’s most popular interfaces: a single product, packaged by an unfathomably big company. But that view is both misleading and disempowering. It implies that only the big companies could possibly create and control this technology, because only they can handle its immensity. But another orientation is possible.</p>
+<p>The best way to solve a hard math problem is to break it up into smaller, easier problems. Similarly, as we better understand AI systems in their social and technical particulars, we can recognize them as involving a sequence of smaller operations. Those can start to seem more approachable for our communities to manage. Interventions start to seem possible. We can think beyond how the post-2022 AI corporate “labs” want us to think about what AI is or could be. We don’t need to be a trillion-dollar tech company to make a dent in shaping this technology through our communities’ needs and knowledge. We can remember the long history of developing and using AI techniques—in ways less flashy than the current consumer products—and imagine a future where we can more easily disentangle and co-govern these toolsets.</p>
+<p>This document from the Metagov community has two goals. First, it identifies distinct layers of the AI stack that can be named and reimagined. Second, for each layer, it points to potential strategies, grounded in existing projects, that could steer that layer toward meaningful collective governance.</p>
+<p>We understand collective governance as an emergent and context-sensitive practice that makes structures of power accountable to those affected by them. It can take many forms—sometimes highly participatory, and sometimes more representative. It might mean voting on members of a board, proposing a policy, submitting a code improvement, organizing a union, holding a potluck, or many other things. Governance is not only something that humans do; we (and our AIs) are part of broader ecosystems that might be part of governance processes as well. In that sense, a drought caused by AI-accelerated climate change is an input to governance. A bee dance and a village assembly could both be part of AI alignment protocols.</p>
+<p>The idea of “points of intervention” here comes from the systems thinker Donella Meadows—especially her essay “<a href="https://donellameadows.org/archives/leverage-points-places-to-intervene-in-a-system/">Leverage Points: Places to Intervene in a System</a>.” One idea that she stresses there is the power of feedback loops, which is when change in one part of a system produces change in another, and that in turn creates further change in the first, and so on. Collective governance is a way of introducing powerful feedback loops that draw on diverse knowledge and experience.</p>
+<p>We recognize that not everyone is comfortable referring to these technologies as “intelligence.” We use the term “AI” most of all because it is now familiar to most people, as a shorthand for a set of technologies that are rapidly growing in adoption and hype. But a fundamental premise of ours is that this technology should enable, inspire, and augment human intelligence, not replace it. The best way to ensure that is to cultivate spaces of creative, collective governance.</p>
+<p>These points of intervention do not focus on asserting ethical best practices for AI, or on defining what AI should look like or how it should work. We hope that, in the struggle to cultivate self-governance, healthy norms will evolve and sharpen in ways that we cannot now anticipate. But democracy is an opportunity, never a guarantee.</p>
+</section><section data-section-index="2"><h2>Model design</h2>
+<p>How are foundational models designed, and who does the designing? What institutions regulate the designers?</p>
+<ul>
+<li>Organize <a href="https://www.cip.org/blog/shared-code">worker governance and ownership of AI labs</a> in the hope that ethics can take precedence over profit motives  </li>
+<li>Develop <a href="https://dl.acm.org/doi/10.1145/3442188.3445922">smaller, purpose-specific</a> models that involve less costly and environmentally destructive training, and can be <a href="https://research.nvidia.com/labs/lpr/slm-agents/">less error-prone</a>; ensure models are fit for purpose, with large-data models used only when necessary</li>
+<li>Design models through institutions oriented around the common good, like democratic governments and nonprofit organizations, as with the Swiss <a href="https://ethz.ch/en/news-and-events/eth-news/news/2025/09/press-release-apertus-a-fully-open-transparent-multilingual-language-model.html">Apertus model</a>  </li>
+<li>Train developers to understand and be aware of their worldviews, and to engage in <a href="https://designjustice.org/principles-overview">design justice</a> practices with affected communities</li>
+</ul>
+</section><section data-section-index="3"><h2>Data</h2>
+<p>What data is used to train models? Where does it come from? What permission and reciprocity is involved?</p>
+<ul>
+<li>Ensure that all training data is auditable through techniques of <a href="https://hypha.coop/data-provenance/">data provenance</a> and <a href="https://www.researchgate.net/publication/395416141_Using_Blockchain_to_Trace_Data_Sources_in_AI">traceability</a>, building on examples like the <a href="https://ethz.ch/en/news-and-events/eth-news/news/2025/09/press-release-apertus-a-fully-open-transparent-multilingual-language-model.html">Apertus</a> and <a href="https://www.eleuther.ai/artifacts/pythia">Pythia</a> models, and the <a href="https://opensource.org/ai">OSI Open Source AI Definition</a>  </li>
+<li>Establish <a href="https://www.projectliberty.io/news/data-coops-as-alternative-to-centralized-digital-economy/">data cooperatives</a>, <a href="https://doi.org/10.1007/s12525-025-00831-6">data collaboratives</a>, and <a href="https://theodi.org/insights/explainers/what-is-a-data-trust/">data trusts</a> to provide ethical, consensual data sourcing and compensate data providers, such as the <a href="http://youtube.com/watch?v=QLIW_TfVR4k">Transfer Data Trust</a> and <a href="http://youtube.com/watch?v=SO_IcQvjMDU&feature=youtu.be">Choral Data Trust</a>  </li>
+<li>Adopt a clear, accessible, and usable <a href="https://metagov.pubpub.org/pub/data-policy/">data policy</a> in any organizational context  </li>
+<li>Reflect best practices of community accountability from the <a href="https://indigenousdata.org/">Indigenous Data Alliance</a> and the <a href="https://indigenousdatalab.org/">Collaboratory for Indigenous Data Governance</a>  </li>
+<li>Leverage existing data under cooperative control, as in <a href="https://www.fertilizerdaily.com/20241112-how-land-olakes-is-using-ai-to-revolutionize-farming-practices/">agricultural co-ops</a> and <a href="https://creditunions.com/features/perspectives/is-your-credit-union-part-of-the-ai-revolution/">credit unions</a>  </li>
+<li>Gather datasets that reflect demonstrable cultural diversity to allow diverse forms of interaction and participation; disclose limitations where this is not possible</li>
+<li>Use participatory taxonomy development, data labeling, and annotation processes to help ensure models are better reflective of community norms, language, and values, as with <a href="http://Reliabl.ai">Reliabl.ai</a></li>
+</ul>
+</section><section data-section-index="4"><h2>Training</h2>
+<p>How are foundational models trained? What infrastructures and natural resources do they rely on?</p>
+<ul>
+<li>Organize training processes through accountability-oriented institutions such as <a href="https://metagov.org/projects/public-ai">democratic governments or nonprofit consortia</a>  </li>
+<li>Ensure that data annotation workers can build collective power through unions and collectives, such as through NGOs like <a href="https://www.techworkercommunityafrica.com/">Techworker Community Africa</a> and <a href="https://shecodeafrica.org/">She Codes Africa</a>, which can help negotiate rates and provide legal support  </li>
+<li>Monitor and evaluate labor practices within the supply chain, following the example of <a href="https://fair.work/en/fw/about/">Fairwork</a>  </li>
+<li>Utilize community-governed standards like <a href="https://en.wikipedia.org/wiki/Participatory_Guarantee_Systems">participatory guarantee systems</a> so that communities that host data centers or data labor can set locally appropriate guidelines</li>
+</ul>
+</section><section data-section-index="5"><h2>Tuning</h2>
+<p>What fine-tuning do models receive before deployment? What collective intervention is involved?</p>
+<ul>
+<li>Utilize collective intelligence processes such as <a href="https://www.cip.org/alignmentassemblies">alignment assemblies</a> to set standards for AI behavior and define system prompts, resulting in <a href="https://blog.cip.org/p/community-models">community models</a> and <a href="https://www.aspendigital.org/project/ai-benchmarks/">community-aligned benchmarks</a></li>
+<li>Implement co-design practices that include alignment workers fully in the process of ethical oversight, rather than the <a href="https://www.bloomsbury.com/us/feeding-the-machine-9781639734979/">dehumanizing roles</a> they are often expected to assume  </li>
+<li>Design tuning processes around an <a href="https://iep.utm.edu/care-ethics/">ethics of care</a>, ensuring that all workers in the process experience respect and dignity in their work  </li>
+<li>Identify and promote <a href="https://weval.org">evaluation processes</a> that improve safety and alignment over time  </li>
+<li>Create <a href="https://humane-intelligence.org/programs-services/bias-bounty/">bias bounty</a> programs that encourage users to identify and report evidence of bias in model behavior</li>
+</ul>
+</section><section data-section-index="6"><h2>Context</h2>
+<p>How do AIs obtain contextual information? What kinds of actions are agents able to carry out?</p>
+<ul>
+<li>Enable privacy-sensitive tools for connecting local models with community data, such as <a href="https://github.com/hyphacoop/RooLLM">RooLLM</a> and <a href="https://metagov.org/projects/koi-pond">KOI Pond</a>  </li>
+<li>Promote cooperative worker ownership, like <a href="https://open-research-europe.ec.europa.eu/articles/5-16/v1">READ-COOP</a>, for human-in-the-loop, AI-assisted activities  </li>
+<li>Manage and protect contextual data through user-owned cooperatives, like <a href="https://www.fastcompany.com/91438757/the-wizard-of-crops-microsofts-oz-aims-to-transform-farming">Land O’Lakes’s Oz platform</a>  </li>
+<li>Adopt open standards, like <a href="https://modelcontextprotocol.io/docs/getting-started/intro">Model Context Protocol</a>, that enable context-holders to define more accurate, appropriate, and ethically sourced data-use policies  </li>
+<li>Utilize community-governed and transparently curated infrastructure, such as <a href="https://github.com/c-host/mg-stract-optics-library-and-search-engine">Stract optics</a>, for agent web searches  </li>
+<li>Establish clear, privacy-respecting, and consent-based norms for model access to user data, such as through the <a href="https://humancontextprotocol.com/">Human Context Protocol</a> or <a href="https://www.secoda.co/glossary/what-are-data-pods">data pods</a></li>
+</ul>
+</section><section data-section-index="7"><h2>Hosting</h2>
+<p>Where are AIs running while they are interacting with users? How do they treat user data?</p>
+<ul>
+<li>Deploy AI systems at data centers powered by renewable energy, such as <a href="https://greenpt.ai/">GreenPT</a> and <a href="https://earthfriendlycomputation.com/">Earth Friendly Computation</a>, and that respect local ecosystems  </li>
+<li>Host AI services on cooperatively owned and governed servers, such as <a href="https://cosyai.net/">Cosy AI</a>, or through democratic local institutions like <a href="https://publicai.network/libraries">public libraries</a></li>
+<li>Run local models on personal or community computers with tools like <a href="https://ollama.com/">Ollama</a> and <a href="https://www.jan.ai/">Jan</a>  </li>
+<li>Use decentralized or federated solutions for hosting like <a href="https://www.golem.network/">Golem</a> or <a href="https://internetcomputer.org/">Internet Computer</a></li>
+</ul>
+</section><section data-section-index="8"><h2>User experience</h2>
+<p>What kinds of interfaces and expectations are users presented with? What options do users have? How do interfaces nudge user behavior?</p>
+<ul>
+<li>Ensure <a href="https://www.microsoft.com/insidetrack/blog/deploying-microsoft-places-at-microsoft-with-our-works-councils/">worker control</a> over the deployment of AI systems in their workplaces  </li>
+<li>Provide for user choice around the worldviews and model moderation practices, such as <a href="https://opensource.org/ai/open-weights">open-weights models allow</a>  </li>
+<li>Establish sectoral agreements over AI use, as in the outcome of the <a href="https://cdt.org/insights/the-sag-aftra-strike-is-over-but-the-ai-fight-in-hollywood-is-just-beginning/">2023–2024 Hollywood strike</a>  </li>
+<li>Create interfaces that enable user choice among different models, such as <a href="https://duck.ai/">Duck.ai</a>  </li>
+<li>Provide privacy-protecting mechanisms, including <a href="https://duckduckgo.com/duckai/privacy-terms">user-data mixers</a> and <a href="https://greenpt.ai/privacy/">data-protection compliance</a>  </li>
+<li>Expect user interfaces and models to respect local law and global treaties by design</li>
+</ul>
+</section><section data-section-index="9"><h2>Public policy</h2>
+<p>How does public policy shape the design, development, and deployment of AI systems?</p>
+<ul>
+<li><a href="https://posts.bcavello.com/how-to-get-into-ai-policy-part-1/">Get involved</a> in AI policymaking</li>
+<li>Demand high standards for procurement of foundational model providers, ensuring that both the providers and the models are audited according to best practices of human rights and sustainability  </li>
+<li>Develop policy with <a href="https://www.demnext.org/projects/five-dimensions-of-scaling-democratic-deliberation-with-and-beyond-ai">AI-augmented citizen assemblies</a> that lay out clear guidelines in highly sensitive contexts, such as education, healthcare, law enforcement, and public benefits  </li>
+<li>Insist on public debates about limits on AI resource usage without positive social purpose </li>
+<li>Hold AI companies responsible for the behavior of models that they control, such as through lawsuits and legislative advocacy</li>
+</ul>
+</section><section data-section-index="10"><h2>Culture</h2>
+<p>What cultural norms form around expectations for AI providers and users? How do these norms shape behavior?</p>
+<ul>
+<li>Promote clear statements of shared values like the <a href="https://getdweb.net/principles/">DWeb Principles</a>  </li>
+<li>Ensure that discussions on AI norms and policy <a href="https://frontandcentered.org/now-that-frontline-communities-have-the-governments-attention-how-will-they-be-defined/">center frontline and most-impacted communities</a>, rather than just technologists and business elites</li>
+<li>Establish clear, context-sensitive agreements on AI use at sites such as classrooms, workplaces, and communities  </li>
+<li>Cultivate awareness of the risks around addictive design, surveillance, and user profiling from personal use of corporate AI platforms that are not collectively governed  </li>
+<li>Encourage practices of collaboration, creative thinking, and disconnection that resist dependency on corporate AI</li>
+</ul>
+</section><section data-section-index="11"><h2>Economics</h2>
+<p>How is the development and maintenance of AI funded, and who benefits economically from its use? What models ensure that value flows back to communities rather than being extracted from them?</p>
+<ul>
+<li>Ensure that workforce-displacing AI adoption accompanies universal benefits that provide more time for self-governance, like <a href="https://www.axios.com/2025/06/29/ai-productivity-four-day-work-week">shorter working hours</a> and <a href="https://blogs.lse.ac.uk/businessreview/2025/04/29/universal-basic-income-as-a-new-social-contract-for-the-age-of-ai-1/">guaranteed income</a>  </li>
+<li>Organize cooperative funding pools to invest in community-owned computing power and shared model development  </li>
+<li>Invest democratically controlled public funds in AI for public benefit  </li>
+<li>Promote revenue-sharing frameworks for self-governing communities who contribute data, such as <a href="https://arxiv.org/abs/2406.11857">royalty frameworks</a> or <a href="https://www.radicalxchange.org/wiki/data-dignity/">data unions</a></li>
+</ul>
+</section><section data-section-index="12"><h2>Ecosystems</h2>
+<p>How do different community-governed AI systems connect, share information, and make decisions together? What standards or protocols enable collective governance across networks and jurisdictions? How do AI systems relate to their local and planetary environments?</p>
+<ul>
+<li>Establish more traceable, collectively governed data repositories that can be used across models and contexts, like <a href="https://image-net.org/">ImageNet</a> and <a href="https://dataverse.org/">Dataverse</a>  </li>
+<li>Share audit logs across networks with standard tools like <a href="https://www.anthropic.com/research/petri-open-source-auditing">Petri</a>  </li>
+<li><a href="https://www.fractracker.org/2025/07/national-data-centers-tracker/">Map</a> and <a href="https://datasociety.net/points/digital-infrastructures-material-consequences/">document</a> the impacts of data centers on communities and ecology  </li>
+<li>Develop cross-border <a href="https://www.sandia.gov/app/uploads/sites/148/2025/04/Challenges-and-Opportunities-for-US-China-Collaboration-on-Artificial-Intelligence-Governance.pdf">standards</a>, <a href="https://www.nature.com/articles/s41598-024-79863-5">collaborations</a>, and <a href="https://www.airbusforai.org/">joint ventures</a> among stakeholders that challenge the international arms-race mentality through co-governance</li>
+<li>Work toward a world of <a href="https://manymodels.org/">many models</a>, enabling more widespread choice</li>
+</ul>
+</section><section data-section-index="13"><h2>Feedback loops</h2>
+<p>Finally, what feedback loops can we imagine across these layers of the stack? How could change in one area lead to greater change through its effects at other layers?</p>
+<ul>
+<li>Collective power at the level of deployment can put pressure on changing norms in training and tuning processes</li>
+<li>Successful training of smaller, more efficient models can enable AI systems that are less costly and easier for communities to own and govern  </li>
+<li>Centering impacted communities in design and deployment can reframe narratives about what AI should be for and what it is capable of</li>
+<li>Economies more conducive to investment for collective ownership can open the door to collective governance at multiple levels  </li>
+<li>Interconnected ecosystems of open standards and shared norms can spread best practices developed in one policy context to others</li>
+</ul>
+<p>Feedback loops can be messy. Remember that collective governance begins with care and consideration for others. May our interventions begin there.</p>
+</section><section data-section-index="14"><h2>Now, time to intervene!</h2>
+</section><section data-section-index="15"><h2>Credits</h2>
+<p>Initiated and edited by Nathan Schneider, with contributions from Cormac Callanan, B Cavello, Coraline Ada Ehmke, Val Elefante, Cent Hosten, Joseph Low, Thomas Renkert, Julija Rukanskaitė, Ann Stapleton, Joshua Tan, Madisen Taylor, Freyja van den Boom, Jojo Vargas, Mohsin Y. K. Yousufi, Ian G. Williams, and Michael Zargham.</p>
+<p>Website built with open-source software and AI collaboration. Text by collaborating humans.</p>
+<p>Made for <img src="/cg-ai/metagov.png" alt="the world"> by <a href="https://metagov.org">Metagov</a></p>
+<p>November 2025</p>
+</section> </div>  </body> </html>

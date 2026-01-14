@@ -4,8 +4,8 @@ return function ($page, $pages, $site, $kirby) {
   $titleTag = $page->title() . " | " . $site->title();
   $metaDescription = $page->subheading()->excerpt(120);
   
-  // Set default meta image
-  $metaImage = null;
+  // Set default meta image to cover.png
+  $metaImage = url('cover.png');
   
   // Try to get SEO image from site settings
   if ($site->seoImage()->isNotEmpty()) {

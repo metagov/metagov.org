@@ -63,3 +63,6 @@ kirby/vendor
 
 # Ignore content folder for now
 /content
+
+# Private Readme with deployment instructions
+/README_private.md

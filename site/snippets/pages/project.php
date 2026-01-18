@@ -123,6 +123,20 @@
 
     <hr />
 
+    <!-- Flexible content blocks -->
+    <?php if ($page->text()->isNotEmpty()) : ?>
+      <div class="mb-8 prose">
+        <?php foreach ($page->text()->toBlocks() as $block) : ?>
+          <div id="<?= $block->id() ?>" class="block block-type-<?= $block->type() ?>">
+            <?php snippet('blocks/' . $block->type(), [
+              'block' => $block,
+              'theme' => 'dark'
+            ]) ?>
+          </div>
+        <?php endforeach ?>
+      </div>
+    <?php endif ?>
+
     <!-- Nav -->
     <div class="flex flex-wrap">
       <div class="flex-auto text-left">

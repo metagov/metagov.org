@@ -48,6 +48,18 @@ columns:
       meetings:
         type: textarea
         label: Meetings
+      text:
+        type: blocks
+        label: Content
+        fieldsets:
+          - text
+          - heading
+          - table
+          - markdown
+          - line
+          - image
+          - video
+          - twocolumns
 
   sidebar:
     width: 1/3

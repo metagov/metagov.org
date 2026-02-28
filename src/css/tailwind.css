@@ -93,7 +93,7 @@ main {
   }
 
   .button {
-    @apply hover:bg-brand/15 px-2 py-1 text-brand font-sans text-small border-brand border rounded-sm;
+    @apply hover:bg-brand/15 px-2 py-1 text-secondary dark:text-brand font-sans text-small border-brand border rounded-sm;
   }
 
   .button.active {
@@ -176,7 +176,7 @@ main {
   }
 
   .search {
-    @apply hover:bg-brand/15 bg-white dark:bg-default p-2 text-brand placeholder-brand/75 font-sans text-small border-brand border rounded-sm;
+    @apply hover:bg-brand/15 bg-white dark:bg-default p-2 text-secondary dark:text-brand placeholder-brand/75 font-sans text-small border-brand border rounded-sm;
   }
 
   .highlight-section {

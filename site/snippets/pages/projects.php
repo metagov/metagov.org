@@ -9,7 +9,7 @@
         <?php snippet('blocks/filter', ['filters' => $categories, 'group' => 'category', 'label' => 'Category']) ?>
         <?php snippet('blocks/filter', ['filters' => $types, 'group' => 'type', 'label' => 'Project type']) ?>
         <?php snippet('blocks/filter', ['filters' => $status, 'group' => 'status', 'label' => 'Status']) ?>
-        <button class="text-brand cursor-pointer w-full md:w-1/2 lg:w-auto" onclick="resetFilter()">Reset</button>
+        <button class="text-secondary dark:text-brand cursor-pointer w-full md:w-1/2 lg:w-auto" onclick="resetFilter()">Reset</button>
       </div>
 
       <div class="lg:flex-shrink-0">

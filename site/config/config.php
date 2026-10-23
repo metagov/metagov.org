@@ -44,6 +44,18 @@ return [
     ]
   ],
   'thathoff.git-content.disable' => true,
+  // Self-service password reset in the Panel ("Forgot your password?").
+  // Needs outgoing mail: put the SMTP transport in site/config/config.metagov.org.php
+  // on the server (kept out of git; see README).
+  'auth' => [
+    'methods' => ['password', 'password-reset'],
+    'challenge' => [
+      'email' => [
+        'from'     => 'noreply@metagov.org',
+        'fromName' => 'Metagov',
+      ],
+    ],
+  ],
   'routes' => [
     [
       'pattern' => 'sitemap.xml',

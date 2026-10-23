@@ -66,3 +66,8 @@ kirby/vendor
 
 # Private Readme with deployment instructions
 /README_private.md
+
+# Host-specific config (holds secrets such as SMTP credentials)
+# ---------------
+
+/site/config/config.*.php
